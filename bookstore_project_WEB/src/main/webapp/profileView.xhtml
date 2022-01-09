@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+<h:head>
+</h:head>
+<h:body>
+<!-- Sidebar -->
+	<div class="card">
+		<p:sidebar widgetVar="sidebar1">
+        <h2>Menu</h2>
+        <p:commandButton type="button" icon="pi pi-user" styleClass="rounded-button ui-button-info" href="profileView"/>
+        <h:link value="profileView" outcome="profileView" />
+    </p:sidebar>
+    <p:commandButton icon="pi pi-arrow-right" type="button" onclick="PF('sidebar1').show()" styleClass="p-mr-2" />
+    </div>
+<div class="card">
+    <h5 style="margin-top:0">Twoj profil</h5>
+    <p:panelGrid columns="2">
+        <f:facet name="header">
+            <p:graphicImage name="demo/images/misc/kobe.png"/>
+        </f:facet>
+
+        <h:outputText value="Imie:"/>
+        <h:outputText value=""/>
+
+        <h:outputText value="Nazwisko:"/>
+        <h:outputText value=""/>
+
+        <h:outputText value="Data urodzenia:"/>
+        <h:outputText value=""/>
+
+        <h:outputText value="Email:"/>
+        <h:outputText value=""/>
+    </p:panelGrid>
+</div>
+</h:body>
+</f:view>
+</html>
