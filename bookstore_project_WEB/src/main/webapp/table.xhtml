@@ -5,13 +5,12 @@
         xmlns:f="http://java.sun.com/jsf/core"
         xmlns:p="http://primefaces.org/ui">
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
-<h:head>
-</h:head>
-<h:body>
+<ui:composition template="/templates/page-template.xhtml">
+<ui:define name="pageContent">
 <p:panel header="Opcje wyszukiwania" toggleable="true" collapsed="true" style="margin-bottom: 1em;">
 		<h:form>
 			<h:panelGrid columns="2" cellpadding="5">
-				<h:outputLabel value="nazwisko:" />
+				<h:outputLabel value="Szukaj:" />
 				<p:inputText />
 			</h:panelGrid>
 		</h:form>
@@ -53,6 +52,10 @@
             </p:dataTable>
 	</div>
 	</h:form>
-</h:body>
+</ui:define>
+</ui:composition>
+
+<ui:composition template="/templates/footer-snippet.xhtml">
+</ui:composition>
 </f:view>
 </html>

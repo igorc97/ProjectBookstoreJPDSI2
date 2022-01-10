@@ -1,18 +1,35 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3c.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:ui="http://java.sun.com/jsf/facelets"
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:f="http://java.sun.com/jsf/core"
         xmlns:p="http://primefaces.org/ui">
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
-<h:head>
-</h:head>
-<h:body>
-	<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
+<ui:composition template="/templates/page-template.xhtml">
+<ui:define name="pageContent">
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
 
 	<div class="card">
     	<p:gmap center="50.297755745124704, 19.134925301967755" zoom="15" type="HYBRID" style="width:100%;height:400px"/>
 	</div> 
-</h:body>
+		<p:panel header="Kontakt" styleClass="bottom-space" toggleable="true" togglespeed="500">
+			
+			
+        <p:fieldset>
+            
+            <p class="p-m-0">
+                <center>Jeśli napotkałeś na problem lub chce o coś zapytać zapraszamy do kontaktu: <br/>
+                <p:button icon="pi pi-envelope" styleClass="rounded-button ui-button-info" /> xyz@gmail.com <br/>
+                <p:button icon="pi pi-phone" styleClass="rounded-button ui-button-info" /> 123-456-789 <br/>
+                <p:button icon="pi pi-map" styleClass="rounded-button ui-button-info" /> Sosnowiec, Ul. Bedzinska 39
+                </center> 
+            </p>
+    	</p:fieldset>
+    	</p:panel>
+</ui:define>
+</ui:composition>
+<ui:composition template="/templates/footer-snippet.xhtml">
+</ui:composition>
+
 </f:view>
 </html>

@@ -25,9 +25,8 @@
     <p>W celu zlozenia zamowienia w naszej ksiegarni, wymagamy od uzytkownika aby zarejestrowal konto lub zalogowal sie na istniejace</p>
 
     <f:facet name="footer">
-        <p:commandButton icon="pi pi-times" value="Okej" styleClass="ui-button-secondary" onclick="PF('karta').close()" />
+        <p:commandButton icon="pi pi-times" value="Okej" styleClass="ui-button-secondary" onclick="PF('karta').hide()" />
     </f:facet>
-    <p:effect type="fold" event="dbclick" />
 </p:card>
 	
 	<p:card style="width: 25em" name="karta2">
@@ -76,36 +75,7 @@
 			</h:panelGrid>
 		</h:form>
 	</p:panel>
-	Sidebar
-	<div class="card">
-		<p:sidebar widgetVar="sidebar1">
-        <h3>Menu</h3>
-        <p:linkButton outcome="index" value="Strona glowna" icon="pi pi-star" style="margin-right:20px;">
-        	<f:param name="productId" value="20"/>
-    	</p:linkButton>
-    <br/>
-    	<p:linkButton outcome="registrationView" value="Rejestracja" icon="pi pi-user-plus" style="margin-right:20px;">
-        	<f:param name="productId" value="20"/>
-    	</p:linkButton>
-    <br/>
-    	<p:linkButton outcome="loginView" value="Login" icon="pi pi-id-card" style="margin-right:20px;">
-        	<f:param name="productId" value="20"/>
-    	</p:linkButton>
-    <br/>
-        <p:linkButton outcome="profileView" value="Profil" icon="pi pi-user" style="margin-right:20px;">
-        	<f:param name="productId" value="20"/>
-    	</p:linkButton>
-    <br/>
-    	<p:linkButton outcome="table" value="Sklep" icon="pi pi-shopping-cart" style="margin-right:20px;">
-        	<f:param name="productId" value="20"/>
-    	</p:linkButton>
-    <br/>
-    	<p:linkButton outcome="contact" value="Kontakt" icon="pi pi-comments" style="margin-right:20px;">
-        	<f:param name="productId" value="20"/>
-    	</p:linkButton>
-    </p:sidebar>
-        <p:commandButton icon="pi pi-arrow-right" type="button" onclick="PF('sidebar1').show()" styleClass="p-mr-2" />
-	</div>
+	
 	Tabela do ksiazek
 	<h:form>
 	<div class="card">
@@ -144,8 +114,6 @@
             </p:dataTable>
 	</div>
 	</h:form>
-	Karty
-	1
 	
 	
 	<h:link value="table" outcome="table" />

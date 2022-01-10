@@ -5,23 +5,13 @@
         xmlns:f="http://java.sun.com/jsf/core"
         xmlns:p="http://primefaces.org/ui">
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
-<h:head>
-</h:head>
-<h:body>
-<!-- Sidebar -->
-	<div class="card">
-		<p:sidebar widgetVar="sidebar1">
-        <h2>Menu</h2>
-        <p:commandButton type="button" icon="pi pi-user" styleClass="rounded-button ui-button-info" href="profileView"/>
-        <h:link value="profileView" outcome="profileView" />
-    </p:sidebar>
-    <p:commandButton icon="pi pi-arrow-right" type="button" onclick="PF('sidebar1').show()" styleClass="p-mr-2" />
-    </div>
-<div class="card">
-    <h5 style="margin-top:0">Twoj profil</h5>
+<ui:composition template="/templates/page-template.xhtml">
+<ui:define name="pageContent">
+<p:panel header="Twoj profil">
+<p:messages id="msg" />
     <p:panelGrid columns="2">
         <f:facet name="header">
-            <p:graphicImage name="demo/images/misc/kobe.png"/>
+           
         </f:facet>
 
         <h:outputText value="Imie:"/>
@@ -35,8 +25,15 @@
 
         <h:outputText value="Email:"/>
         <h:outputText value=""/>
+        
+        <h:outputText value="Twoje zamowienia:"/>
+        <h:outputText value=""/>
     </p:panelGrid>
-</div>
-</h:body>
+</p:panel>
+    
+    </ui:define>
+</ui:composition>
+<ui:composition template="/templates/footer-snippet.xhtml">
+</ui:composition>
 </f:view>
 </html>

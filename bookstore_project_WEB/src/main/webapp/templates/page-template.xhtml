@@ -15,6 +15,33 @@
 	</ui:define>
 
 	<ui:define name="content">
+			<p:sidebar widgetVar="sidebar1">
+        <h3>Menu</h3>
+        <p:linkButton outcome="index" value="Strona glowna" icon="pi pi-star" style="margin-right:20px;">
+        	<f:param name="productId" value="20"/>
+    	</p:linkButton>
+    <br/>
+    	<p:linkButton outcome="registrationView" value="Rejestracja" icon="pi pi-user-plus" style="margin-right:20px;">
+        	<f:param name="productId" value="20"/>
+    	</p:linkButton>
+    <br/>
+    	<p:linkButton outcome="loginView" value="Login" icon="pi pi-id-card" style="margin-right:20px;">
+        	<f:param name="productId" value="20"/>
+    	</p:linkButton>
+    <br/>
+        <p:linkButton outcome="profileView" value="Profil" icon="pi pi-user" style="margin-right:20px;">
+        	<f:param name="productId" value="20"/>
+    	</p:linkButton>
+    <br/>
+    	<p:linkButton outcome="table" value="Sklep" icon="pi pi-shopping-cart" style="margin-right:20px;">
+        	<f:param name="productId" value="20"/>
+    	</p:linkButton>
+    <br/>
+    	<p:linkButton outcome="contact" value="Kontakt" icon="pi pi-comments" style="margin-right:20px;">
+        	<f:param name="productId" value="20"/>
+    	</p:linkButton>
+    </p:sidebar>
+        <p:commandButton icon="pi pi-arrow-right" type="button" onclick="PF('sidebar1').show()" styleClass="p-mr-2" />
 
 		<p:panel header="Witamy" styleClass="bottom-space" toggleable="true" togglespeed="500"><h:form>
 			<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
