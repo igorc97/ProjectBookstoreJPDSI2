@@ -9,12 +9,23 @@
 <ui:composition template="/templates/main-template.xhtml">
 
 	<ui:define name="title">
-		Kalkulator kredytowy
+		<h:panelGroup style="display:block; text-align:center">
+			Ksiegarnia internetowa
+		</h:panelGroup>
 	</ui:define>
 
 	<ui:define name="content">
 
-		<p:panel header="jakaś zawartość" styleClass="bottom-space">/ przykładowa stała zawartość /</p:panel>
+		<p:panel header="Witamy" styleClass="bottom-space" toggleable="true" togglespeed="500"><h:form>
+			<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
+			
+        <p:fieldset>
+            <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" update="msgs"/>
+            <p class="p-m-0">
+                <center>Witamy w ksiegarni internetowej "Szybka ksiazka". Mamy nadzieje, ze spedzony tutaj czas bedziesz wspominal/a jako intuicyjne zakupy z ekspresowa dostawa.</center> 
+            </p>
+        </p:fieldset>
+		</h:form></p:panel>
 
 		<ui:insert name="pageContent"></ui:insert>
 

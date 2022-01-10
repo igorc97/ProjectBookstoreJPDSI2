@@ -5,23 +5,69 @@
         xmlns:f="http://java.sun.com/jsf/core"
         xmlns:p="http://primefaces.org/ui">
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
-<h:head>
-</h:head>
-<h:body>
-<!-- Wstep -->
-	<div class="card">
-		<h:form>
-			<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
-			
-        <p:fieldset legend="Witamy" toggleable="true" toggleSpeed="500">
-            <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" update="msgs"/>
-            <p class="p-m-0">
-                <center>Witamy w ksiegarni internetowej "Szybka ksiazka". Mamy nadzieje, ze spedzony tutaj czas bedziesz wspominal/a jako intuicyjne zakupy z ekspresowa dostawa.</center> 
-            </p>
-        </p:fieldset>
-		</h:form>
-	</div>
-<!-- Opcje wyszukiwania -->
+<ui:composition template="/templates/page-template.xhtml">
+	<ui:define name="pageContent">
+		<p:panel header="Sprawdz to" toggleable="true" togglespeed="500">
+			<p:messages id="msg" />
+<!-- Karty -->			
+			<center>
+			<p:card style="width: 25em" widgetVar="karta" closeable="true" closespeed="500">
+    <f:facet name="header">
+        <h:graphicImage name="img/usercard.png" library="template"/>
+    </f:facet>
+    <f:facet name="title">
+        Ksiegarnia internetowa
+    </f:facet>
+    <f:facet name="subtitle">
+        Rejestracja
+    </f:facet>
+
+    <p>W celu zlozenia zamowienia w naszej ksiegarni, wymagamy od uzytkownika aby zarejestrowal konto lub zalogowal sie na istniejace</p>
+
+    <f:facet name="footer">
+        <p:commandButton icon="pi pi-times" value="Okej" styleClass="ui-button-secondary" onclick="PF('karta').close()" />
+    </f:facet>
+    <p:effect type="fold" event="dbclick" />
+</p:card>
+	
+	<p:card style="width: 25em" name="karta2">
+    <f:facet name="header">
+        <h:graphicImage name="img/usercard.png" library="template"/>
+    </f:facet>
+    <f:facet name="title">
+        Ksiegarnia internetowa
+    </f:facet>
+    <f:facet name="subtitle">
+        Kontakt
+    </f:facet>
+
+    <p>W przypadku jakichkolwiek problemow lub watpliwosci zachecamy do kontaktu. W tym celu nalezy w Menu wybrac opcje "Kontakt" a dane kontaktowe do naszej ksiegarni wyswietla sie na stronie</p>
+
+    <f:facet name="footer">
+        <p:commandButton icon="pi pi-times" value="Okej" styleClass="ui-button-secondary" onclick="karta2.hide();" />
+    </f:facet>
+</p:card>
+	
+	<p:card style="width: 25em" name="karta3">
+    <f:facet name="header">
+        <h:graphicImage name="img/usercard.png" library="template"/>
+    </f:facet>
+    <f:facet name="title">
+        Ksiegarnia internetowa
+    </f:facet>
+    <f:facet name="subtitle">
+        Gwarancja jakosci
+    </f:facet>
+
+    <p>Jestesmy nowoczesna ksiegarnia i stawiamy przede wszystkim na zadowolenie naszych klientow. Oznacza to, ze ceny naszych produktow sa systematycznie sprawdzane tak, aby ustalic mozliwie najnizsza cene. Oprocz tego gwarantujemy szybkie dostarczenie zamowienia oraz atrakcyjne promocje i kupony rabatowe dla pierwszego zamowienia.</p>
+
+    <f:facet name="footer">
+        <p:commandButton icon="pi pi-times" value="Okej" styleClass="ui-button-secondary" onclick="card.hide();" />
+    </f:facet>
+</p:card></center>
+			<!-- Wstep -->
+		
+<!--Opcje wyszukiwania 
 	<p:panel header="Opcje wyszukiwania" toggleable="true" collapsed="true" style="margin-bottom: 1em;">
 		<h:form>
 			<h:panelGrid columns="2" cellpadding="5">
@@ -30,7 +76,7 @@
 			</h:panelGrid>
 		</h:form>
 	</p:panel>
-	<!-- Sidebar -->
+	Sidebar
 	<div class="card">
 		<p:sidebar widgetVar="sidebar1">
         <h3>Menu</h3>
@@ -60,7 +106,7 @@
     </p:sidebar>
         <p:commandButton icon="pi pi-arrow-right" type="button" onclick="PF('sidebar1').show()" styleClass="p-mr-2" />
 	</div>
-	<!-- Tabela do ksiazek -->
+	Tabela do ksiazek
 	<h:form>
 	<div class="card">
 		<p:dataTable var="product" value="">
@@ -98,64 +144,9 @@
             </p:dataTable>
 	</div>
 	</h:form>
-	<!-- Karty -->
-	<!-- 1 -->
-	<p:card style="width: 25em" widgetVar="karta">
-    <f:facet name="header">
-        <img alt="user header" src="/resources/img/usercard.png"/>
-    </f:facet>
-    <f:facet name="title">
-        Ksiegarnia internetowa
-    </f:facet>
-    <f:facet name="subtitle">
-        Rejestracja
-    </f:facet>
-
-    <p>W celu zlozenia zamowienia w naszej ksiegarni, wymagamy od uzytkownika aby zarejestrowal konto lub zalogowal sie na istniejace</p>
-
-    <f:facet name="footer">
-        <p:commandButton icon="pi pi-check" value="Save"/>
-        <p:commandButton icon="pi pi-times" value="Cancel" styleClass="ui-button-secondary" style="margin-left: .5em" onclick="PF('karta').hide()" />
-    </f:facet>
-</p:card>
-	<!-- 2 -->
-	<p:card style="width: 25em" name="karta2">
-    <f:facet name="header">
-        <img alt="user header" src="webapp/resources/img/usercard.png"/>
-    </f:facet>
-    <f:facet name="title">
-        Ksiegarnia internetowa
-    </f:facet>
-    <f:facet name="subtitle">
-        Kontakt
-    </f:facet>
-
-    <p>W przypadku jakichkolwiek problemow lub watpliwosci zachecamy do kontaktu. W tym celu nalezy w Menu wybrac opcje "Kontakt" a dane kontaktowe do naszej ksiegarni wyswietla sie na stronie</p>
-
-    <f:facet name="footer">
-        <p:commandButton icon="pi pi-check" value="Save"/>
-        <p:commandButton icon="pi pi-times" value="Cancel" styleClass="ui-button-secondary" style="margin-left: .5em" onclick="card.hide();" />
-    </f:facet>
-</p:card>
-	<!-- 3 -->
-	<p:card style="width: 25em" name="karta3">
-    <f:facet name="header">
-        <img alt="user header" src="img/usercard.png"/>
-    </f:facet>
-    <f:facet name="title">
-        Ksiegarnia internetowa
-    </f:facet>
-    <f:facet name="subtitle">
-        Gwarancja jakosci
-    </f:facet>
-
-    <p>Jestesmy nowoczesna ksiegarnia i stawiamy przede wszystkim na zadowolenie naszych klientow. Oznacza to, ze ceny naszych produktow sa systematycznie sprawdzane tak, aby ustalic mozliwie najnizsza cene. Oprocz tego gwarantujemy szybkie dostarczenie zamowienia oraz atrakcyjne promocje i kupony rabatowe dla pierwszego zamowienia.</p>
-
-    <f:facet name="footer">
-        <p:commandButton icon="pi pi-check" value="Save"/>
-        <p:commandButton icon="pi pi-times" value="Cancel" styleClass="ui-button-secondary" style="margin-left: .5em" onclick="card.hide();" />
-    </f:facet>
-</p:card>
+	Karty
+	1
+	
 	
 	<h:link value="table" outcome="table" />
 	<br/>
@@ -163,7 +154,11 @@
 	<br/> 
 	<h:link value="contact" outcome="contact" />
 	<br/>
-	<h:link value="profileView" outcome="profileView" />
-</h:body>
+	<h:link value="profileView" outcome="profileView" /> -->
+		</p:panel>
+	</ui:define>
+</ui:composition>
+	<ui:composition template="/templates/footer-snippet.xhtml">
+	</ui:composition>
 </f:view>
 </html>
