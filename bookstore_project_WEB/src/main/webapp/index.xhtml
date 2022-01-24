@@ -4,14 +4,20 @@
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:f="http://java.sun.com/jsf/core"
         xmlns:p="http://primefaces.org/ui">
+<h:outputStylesheet name="primeflex/2.0.0/primeflex.min.css" />
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
 <ui:composition template="/templates/page-template.xhtml">
 	<ui:define name="pageContent">
-		<p:panel header="Sprawdz to" toggleable="true" togglespeed="500">
+	 
+        
+		<p:panel header="Sprawdz to - w celu zamkniecia kliknij podwojnie na dana karte" toggleable="true" togglespeed="500">
+		
 			<p:messages id="msg" />
 <!-- Karty -->			
-			<center>
-			<p:card style="width: 25em" widgetVar="karta" closeable="true" closespeed="500">
+			<div class="p-grid p-formgrid ui-fluid">
+        <div class="p-col-12 p-mb-2 p-lg-4 p-mb-lg-0">
+			<p:card style="width: 40em" widgetVar="karta" closeable="true" closespeed="500">
+			<p:effect type="fold" event="dblclick"/>
     <f:facet name="header">
         <h:graphicImage name="img/usercard.png" library="template"/>
     </f:facet>
@@ -25,11 +31,14 @@
     <p>W celu zlozenia zamowienia w naszej ksiegarni, wymagamy od uzytkownika aby zarejestrowal konto lub zalogowal sie na istniejace</p>
 
     <f:facet name="footer">
-        <p:commandButton icon="pi pi-times" value="Okej" styleClass="ui-button-secondary" onclick="PF('karta').hide()" />
+        
     </f:facet>
 </p:card>
-	
-	<p:card style="width: 25em" name="karta2">
+</div>
+
+<div class="p-col-12 p-mb-2 p-lg-4 p-mb-lg-0">	
+	<p:card style="width: 40em" name="karta2">
+	<p:effect type="fold" event="dblclick"/>
     <f:facet name="header">
         <h:graphicImage name="img/usercard.png" library="template"/>
     </f:facet>
@@ -43,11 +52,13 @@
     <p>W przypadku jakichkolwiek problemow lub watpliwosci zachecamy do kontaktu. W tym celu nalezy w Menu wybrac opcje "Kontakt" a dane kontaktowe do naszej ksiegarni wyswietla sie na stronie</p>
 
     <f:facet name="footer">
-        <p:commandButton icon="pi pi-times" value="Okej" styleClass="ui-button-secondary" onclick="karta2.hide();" />
+        
     </f:facet>
 </p:card>
-	
-	<p:card style="width: 25em" name="karta3">
+</div>
+<div class="p-col-12 p-mb-2 p-lg-4 p-mb-lg-0">
+	<p:card style="width: 40em" name="karta3">
+	<p:effect type="fold" event="dblclick"/>
     <f:facet name="header">
         <h:graphicImage name="img/usercard.png" library="template"/>
     </f:facet>
@@ -61,9 +72,10 @@
     <p>Jestesmy nowoczesna ksiegarnia i stawiamy przede wszystkim na zadowolenie naszych klientow. Oznacza to, ze ceny naszych produktow sa systematycznie sprawdzane tak, aby ustalic mozliwie najnizsza cene. Oprocz tego gwarantujemy szybkie dostarczenie zamowienia oraz atrakcyjne promocje i kupony rabatowe dla pierwszego zamowienia.</p>
 
     <f:facet name="footer">
-        <p:commandButton icon="pi pi-times" value="Okej" styleClass="ui-button-secondary" onclick="card.hide();" />
+        
     </f:facet>
-</p:card></center>
+</p:card>
+</div></div>
 			<!-- Wstep -->
 		
 <!--Opcje wyszukiwania 
@@ -124,6 +136,40 @@
 	<br/>
 	<h:link value="profileView" outcome="profileView" /> -->
 		</p:panel>
+	
+	
+	
+	<p:panel header="Ocen nas!" toggleable="true" togglespeed="500" style="height: 30em">
+	<h:form id ="poll">
+	<div class="p-grid p-text-center">
+                <div class="p-field p-col-12 p-md-4" style="position:relative; float: left; margin: 20px; margin-left: 29em">
+                <div class="knob-container ui-corner-all" >
+               <h5>Ilosc produktow</h5>
+                    <p:knob foregroundColor="#2196F3" backgroundColor="#495057" value="0"/>
+                </div>
+                </div>
+                <div class="p-field p-col-12 p-md-4" style="position:relative; float: left; margin: 20px">
+                <div class="knob-container ui-corner-all">
+                <h5>Szybkosc dostawy</h5>
+                    <p:knob foregroundColor="#2196F3" backgroundColor="#495057" value="0"/>
+                </div>
+                </div>
+                <div class="p-field p-col-12 p-md-4" style="position:relative; float: left; margin: 20px">
+                <div class="knob-container ui-corner-all">
+          <h5>Kontakt z firma</h5>
+                    <p:knob foregroundColor="#2196F3" backgroundColor="#495057" value="0"/>
+                </div>
+                </div>
+                <div class="p-field p-col-12 p-md-4" style="position:relative; float: left; margin: 20px; margin-right: 5em">
+                <div class="knob-container ui-corner-all">
+               <h5>Problemy z przesylkami</h5>
+                    <p:knob foregroundColor="#2196F3" backgroundColor="#495057" value="0"/>
+                </div></div>
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+				<center><p:commandButton action="#{userController.poll}" value="Dalej" update="poll"/></center>
+				</div>
+    </h:form>
+        </p:panel>
 	</ui:define>
 </ui:composition>
 	<ui:composition template="/templates/footer-snippet.xhtml">

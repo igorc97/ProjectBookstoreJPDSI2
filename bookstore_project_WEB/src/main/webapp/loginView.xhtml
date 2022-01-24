@@ -7,6 +7,25 @@
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
 	<ui:composition template="/templates/page-template.xhtml">
 	<ui:define name="pageContent">
+	<div class="card">
+    	<h:form id="loginForm">
+		<p:panel header="Formularz logowania" style="width: 100%;">
+		<p:messages/>
+		<center>
+		<h:panelGrid columns="2" columnClasses="labelColumn, fieldColumn">
+			<p:outputLabel value="Nazwa uzytkownika"/>
+			<p:inputText id="userName" value="#{userController.loginUser.userName}" label="UserName" />			
+						
+			<p:outputLabel value="Haslo"/>
+			<p:password id="password" value="#{userController.loginUser.password}" label="Password"/>
+			
+			<center><p:commandButton action="#{userController.login}" value="Dalej" update="loginForm"/></center>
+		</h:panelGrid>
+		</center>
+		</p:panel>
+		
+	</h:form>
+</div>
 	</ui:define>
 	</ui:composition>
 	<ui:composition template="/templates/footer-snippet.xhtml">
