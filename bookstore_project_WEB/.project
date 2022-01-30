@@ -3,6 +3,7 @@
 	<name>bookstore_project_WEB</name>
 	<comment></comment>
 	<projects>
+		<project>bookstore_project_ejbb</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
