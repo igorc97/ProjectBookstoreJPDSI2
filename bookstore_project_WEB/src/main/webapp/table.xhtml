@@ -11,11 +11,12 @@
 		<h:form>
 			<h:panelGrid columns="2" cellpadding="5">
 				<h:outputLabel value="Szukaj:" />
-				<p:inputText />
+				<p:inputText value="#{userListBB.surname}" />
+				<p:commandButton value="Szukaj" update="form-table" />
 			</h:panelGrid>
 		</h:form>
 	</p:panel>
-	<h:form>
+	<h:form id="product-table">
 	<div class="card">
 		<p:dataTable var="product" value="">
 		<p:column headerText="ISBN">
@@ -51,6 +52,50 @@
             </p:column>
             </p:dataTable>
 	</div>
+	</h:form>
+	<h:form id="form-table" style="margin-bottom:1em;">
+
+		<p:commandButton value="Dodaj nowa osobe"
+			action="#{userListBB.newUser()}" style="margin-bottom:1em;"/>
+
+		<p:dataTable value="#{userListBB.list}" var="p">
+
+			<p:column priority="5">
+				<f:facet name="header">
+					<h:outputText value="imie" />
+				</f:facet>
+				<h:outputText value="#{p.name}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="nazwisko" />
+				</f:facet>
+				<h:outputText value="#{p.surname}" />
+			</p:column>
+
+			<p:column priority="4">
+				<f:facet name="header">
+					<h:outputText value="data ur." />
+				</f:facet>
+				<h:outputText value="#{p.birthdate}">
+					<f:convertDateTime pattern="dd-MM-yyyy" />
+				</h:outputText>
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="opcje" />
+				</f:facet>
+
+				<p:commandButton value="Edytuj"
+					action="#{personListBB.editPerson(p)}" />
+
+				<p:commandButton value="Usun"
+					action="#{userListBB.deleteUser(p)}" update="@form" />
+			</p:column>
+
+		</p:dataTable>
 	</h:form>
 </ui:define>
 </ui:composition>
