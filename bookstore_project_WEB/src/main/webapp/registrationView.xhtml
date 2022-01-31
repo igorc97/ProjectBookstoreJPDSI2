@@ -12,25 +12,30 @@
 		<p:panel header="Formularz rejestracyjny" style="width: 100%;">
 		<p:messages/>
 		<center>
+		
 		<h:panelGrid columns="2" columnClasses="labelColumn, fieldColumn">
 			<p:outputLabel value="Nazwa uzytkownika"/>
-			<p:inputText id="userName" value="#{userController.registrationUser.userName}" label="UserName" />			
+			<p:inputText id="userName" value="#{p.login}" label="UserName" />			
 						
 			<p:outputLabel value="Haslo"/>
-			<p:password id="password" value="#{userController.registrationUser.password}" label="Password"/>
+			<p:password id="password" value="#{p.password}" label="Password"/>
 			
 			<p:outputLabel value="Imie"/>
-			<p:inputText id="firstName" value="#{userController.registrationUser.firstName}" label="FirstName"/>
+			<p:inputText id="firstName" value="#{p.name}" label="FirstName"/>
 			
 			<p:outputLabel value="Nazwisko"/>
-			<p:inputText id="lastName" value="#{userController.registrationUser.lastName}"/>
+			<p:inputText id="lastName" value="#{p.surname}"/>
 						
 			<p:outputLabel value="Email"/>
-			<p:inputText id="email" value="#{userController.registrationUser.email}"/>
+			<p:inputText id="email" value="#{p.email}"/>
+			
+			<p:outputLabel value="Data urodzin(rrrr-mm-dd)"/>
+			<p:inputText id="birthDate" value="#{p.birthdate}"/>
 						
 			<p:outputLabel value=""/>
-			<p:commandButton action="#{userController.register}" value="Dalej" update="registrationForm"/>
+			<p:commandButton action="#{userListbB.newUser()}" value="Dalej" update="registrationForm"/>
 		</h:panelGrid>
+	
 		</center>
 		</p:panel>
 		

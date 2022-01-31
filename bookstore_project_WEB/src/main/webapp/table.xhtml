@@ -7,7 +7,7 @@
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
 <ui:composition template="/templates/page-template.xhtml">
 <ui:define name="pageContent">
-<p:panel header="Opcje wyszukiwania" toggleable="true" collapsed="true" style="margin-bottom: 1em;">
+<p:panel header="Opcje wyszukiwania ludzie" toggleable="true" collapsed="true" style="margin-bottom: 1em;">
 		<h:form>
 			<h:panelGrid columns="2" cellpadding="5">
 				<h:outputLabel value="Szukaj:" />
@@ -16,39 +16,48 @@
 			</h:panelGrid>
 		</h:form>
 	</p:panel>
+	<p:panel header="Opcje wyszukiwania ksiazki" toggleable="true" collapsed="true" style="margin-bottom: 1em;">
+		<h:form>
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel value="Szukaj ksiazki:" />
+				<p:inputText value="#{bookListBB.title}" />
+				<p:commandButton value="Szukaj" update="product-table" />
+			</h:panelGrid>
+		</h:form>
+	</p:panel>
 	<h:form id="product-table">
 	<div class="card">
-		<p:dataTable var="product" value="">
+		<p:dataTable var="u" value="#{bookListBB.list}">
 		<p:column headerText="ISBN">
-			<h:outputText value=""/>
+			<h:outputText value="#{u.isbn}"/>
 		</p:column>
 		
 		<p:column headerText="Tytul">
-                <h:outputText value="" />
+                <h:outputText value="#{u.title}" />
             </p:column>
 
             <p:column headerText="Autor">
-                <h:outputText value="" />
+                <h:outputText value="#{u.author}" />
             </p:column>
 
             <p:column headerText="Dostepnosc">
-                <h:outputText value="" />
+                <h:outputText value="#{u.availability}" />
             </p:column>
             
             <p:column headerText="Cena">
-                <h:outputText value="" />
+                <h:outputText value="#{u.price}" />
             </p:column>
             
             <p:column headerText="Wydawnictwo">
-                <h:outputText value="" />
+                <h:outputText value="#{u.publishingHouse}" />
             </p:column>
             
             <p:column headerText="Data wydania">
-                <h:outputText value="" />
+                <h:outputText value="#{u.releaseDate}" />
             </p:column>
             
             <p:column headerText="Opis">
-                <h:outputText value="" />
+                <h:outputText value="#{u.description}" />
             </p:column>
             </p:dataTable>
 	</div>
