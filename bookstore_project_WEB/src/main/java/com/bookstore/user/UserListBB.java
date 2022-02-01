@@ -1,5 +1,6 @@
 package com.bookstore.user;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,9 +23,14 @@ import bookstore_project_ejbb.entities.User;
 public class UserListBB {
 	private static final String PAGE_PERSON_EDIT = "table?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
-
+	private static final String PAGE_PERSON_REGISTRATION = "registrationView?faces-redirect=true";
+	
 	private String surname;
-		
+	/*
+	 * private String name; private String login; private String pass; private
+	 * String email; private Date birthdate;
+	 */
+	
 	@Inject
 	ExternalContext extcontext;
 	
@@ -42,6 +48,28 @@ public class UserListBB {
 		this.surname = surname;
 	}
 
+	/*
+	 * public String getName() { return name; }
+	 * 
+	 * public void setName(String name) { this.name = name; }
+	 * 
+	 * public String getLogin() { return login; }
+	 * 
+	 * public void setLogin(String login) { this.login = login; }
+	 * 
+	 * public String getPass() { return pass; }
+	 * 
+	 * public void setPass(String pass) { this.pass = pass; }
+	 * 
+	 * public String getEmail() { return email; }
+	 * 
+	 * public void setEmail(String email) { this.email = email; }
+	 * 
+	 * public Date getBirthdate() { return birthdate; }
+	 * 
+	 * public void setBirthdate(Date birthdate) { this.birthdate = birthdate; }
+	 */
+	
 	public List<User> getFullList(){
 		return userDAO.getFullList();
 	}
@@ -72,7 +100,7 @@ public class UserListBB {
 		//2. Pass object through flash	
 		flash.put("user", user);
 		
-		return PAGE_PERSON_EDIT;
+		return PAGE_PERSON_REGISTRATION;
 	}
 
 	public String editUser(User user){
