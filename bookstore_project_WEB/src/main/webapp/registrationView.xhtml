@@ -5,37 +5,47 @@
         xmlns:f="http://java.sun.com/jsf/core"
         xmlns:p="http://primefaces.org/ui">
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+<f:metadata>
+	<f:viewAction action="#{userEditBB.onLoad()}" />
+</f:metadata>
 <ui:composition template="/templates/page-template.xhtml">
 	<ui:define name="pageContent">
 		<div class="card">
-    	<h:form id="registrationForm">
+    	<h:form rendered="#{userEditBB.user != null}">
 		<p:panel header="Formularz rejestracyjny" style="width: 100%;">
 		<p:messages/>
 		<center>
 		
-		<h:panelGrid columns="2" columnClasses="labelColumn, fieldColumn">
+		<h:panelGrid columns="2" columnClasses="labelColumn, fieldColumn" var="p">
 			<p:outputLabel value="Nazwa uzytkownika"/>
-			<p:inputText id="userName" value="#{p.login}" label="UserName" />			
+			<p:inputText id="login" value="#{userEditBB.user.login}" required="true" requiredMessage="Pole nie może być puste!" />			
 						
 			<p:outputLabel value="Haslo"/>
-			<p:password id="password" value="#{p.password}" label="Password"/>
+			<p:password id="password" value="#{userEditBB.user.pass}" required="true" requiredMessage="Pole nie może być puste!"/>
 			
 			<p:outputLabel value="Imie"/>
-			<p:inputText id="firstName" value="#{p.name}" label="FirstName"/>
+			<p:inputText id="name" value="#{userEditBB.user.name}" required="true" requiredMessage="Pole nie może być puste!"/>
 			
 			<p:outputLabel value="Nazwisko"/>
-			<p:inputText id="lastName" value="#{p.surname}"/>
+			<p:inputText id="surname" value="#{userEditBB.user.surname}" required="true" requiredMessage="Pole nie może być puste!"/>
 						
 			<p:outputLabel value="Email"/>
-			<p:inputText id="email" value="#{p.email}"/>
+			<p:inputText id="email" value="#{userEditBB.user.email}" required="true" requiredMessage="Pole nie może być puste!"/>
 			
 			<p:outputLabel value="Data urodzin(rrrr-mm-dd)"/>
-			<p:inputText id="birthDate" value="#{p.birthdate}"/>
-						
+			<p:inputText id="birthDate" value="#{userEditBB.user.birthdate}" required="true" requiredMessage="Pole nie może być puste!">
+				<f:convertDateTime pattern="yyyy-mm-dd" />
+			</p:inputText>
+			<p:outputLabel value="Rola, user=2, admin=1"/>
+			<p:inputText id="role2" value="#{userEditBB.user.role}" required="true" requiredMessage="Pole nie może być puste!" >
+			
+			</p:inputText>
+			
+							
 			<p:outputLabel value=""/>
-			<p:commandButton action="#{userListbB.newUser()}" value="Dalej" update="registrationForm"/>
+			<p:commandButton action="#{userEditBB.saveData()}" value="Dalej" update="@form"/>
 		</h:panelGrid>
-	
+		
 		</center>
 		</p:panel>
 		

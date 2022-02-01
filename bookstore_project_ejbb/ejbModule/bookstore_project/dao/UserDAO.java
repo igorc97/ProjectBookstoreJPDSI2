@@ -69,7 +69,7 @@ public class UserDAO {
 
 		// ... other parameters ... 
 
-		// 4. Execute query and retrieve list of Person objects
+		// 4. Execute query and retrieve list of User objects
 		try {
 			list = query.getResultList();
 		} catch (Exception e) {

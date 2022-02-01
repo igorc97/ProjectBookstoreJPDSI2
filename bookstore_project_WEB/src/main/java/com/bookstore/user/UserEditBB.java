@@ -1,5 +1,6 @@
 package com.bookstore.user;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -14,6 +15,7 @@ import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
 import bookstore_project.dao.UserDAO;
+import bookstore_project_ejbb.entities.Role;
 import bookstore_project_ejbb.entities.User;
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
@@ -61,16 +63,20 @@ public class UserEditBB implements Serializable {
 		}
 
 	}
-
+	
 	public String saveData() {
+		/* String rolauser = "2"; */
+		
 		// no Person object passed
 		if (loaded == null) {
 			return PAGE_STAY_AT_THE_SAME;
 		}
 
 		try {
-			if (user.getIdUser() == null) {
+			if (Integer.valueOf(user.getIdUser()) == null) {
 				// new record
+				
+				
 				userDAO.create(user);
 			} else {
 				// existing record

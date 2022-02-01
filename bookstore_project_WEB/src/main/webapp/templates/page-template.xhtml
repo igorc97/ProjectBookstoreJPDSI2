@@ -21,9 +21,9 @@
         	<f:param name="productId" value="20"/>
     	</p:linkButton>
     <br/>
-    	<p:linkButton outcome="registrationView" value="Rejestracja" icon="pi pi-user-plus" style="margin-right:20px;">
+    	<p:commandButton value="Rejestracja" action="#{userListBB.newUser()}" icon="pi pi-user-plus" style="margin-right:20px;">
         	<f:param name="productId" value="20"/>
-    	</p:linkButton>
+    	</p:commandButton>
     <br/>
     	<p:linkButton outcome="loginView" value="Login" icon="pi pi-id-card" style="margin-right:20px;">
         	<f:param name="productId" value="20"/>
