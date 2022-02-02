@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import bookstore_project.dao.UserDAO;
 import bookstore_project_ejbb.entities.User;
+import bookstore_project_ejbb.entities.Role;
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
 @RequestScoped
@@ -47,7 +48,9 @@ public class UserListBB {
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
+	
 
+	
 	/*
 	 * public String getName() { return name; }
 	 * 
