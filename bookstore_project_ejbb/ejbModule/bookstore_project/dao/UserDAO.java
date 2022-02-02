@@ -25,7 +25,15 @@ public class UserDAO {
 		em.remove(em.merge(user));
 	}
 	public User find(Object id) {
-		return em.find(User.class, id);
+		User u = em.find(User.class, id);
+		return u;
+	}
+	public User findAndGetOrders(Object id) {
+		User u = em.find(User.class, id);
+		if (u != null) {
+			u.getOrders().size();
+		}
+		return u;
 	}
 	public List<User> getFullList(){
 		List<User> list = null;
@@ -37,6 +45,21 @@ public class UserDAO {
 			}
 		return list;
 	}
+
+	public User findBySurname(String surname){
+		User u = null;
+		Query query = em.createQuery("Select u from User u where u.surname = :surname");
+		query.setParameter("surname", surname);
+		try {
+			
+			u = (User) query.getSingleResult();
+			
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		return u;
+	}
+
 	public List<User> getList(Map<String, Object> searchParams) {
 		List<User> list = null;
 

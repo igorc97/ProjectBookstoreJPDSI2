@@ -15,8 +15,10 @@ import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
 import bookstore_project.dao.UserDAO;
+import bookstore_project.dao.RoleDAO;
 import bookstore_project_ejbb.entities.Role;
 import bookstore_project_ejbb.entities.User;
+
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
 @ViewScoped
@@ -31,6 +33,8 @@ public class UserEditBB implements Serializable {
 
 	@EJB
 	UserDAO userDAO;
+	@EJB
+	RoleDAO roleDAO;
 
 	@Inject
 	FacesContext context;
@@ -44,7 +48,8 @@ public class UserEditBB implements Serializable {
 
 	public void onLoad() throws IOException {
 		// 1. load person passed through session
-		// HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		// HttpSession session = (HttpSession)
+		// context.getExternalContext().getSession(true);
 		// loaded = (Person) session.getAttribute("person");
 
 		// 2. load person passed through flash
@@ -63,25 +68,22 @@ public class UserEditBB implements Serializable {
 		}
 
 	}
-	
+
 	public String saveData() {
-		/* String rolauser = "2"; */
-		
+
 		// no Person object passed
 		if (loaded == null) {
 			return PAGE_STAY_AT_THE_SAME;
 		}
+		//Role role = new Role();
+		//role.setIdRole(2);
+		
+	Role role = roleDAO.findByName("User");
+		user.setRole(role);
 
 		try {
-			if (Integer.valueOf(user.getIdUser()) == null) {
-				// new record
-				
-				
-				userDAO.create(user);
-			} else {
-				// existing record
-				userDAO.merge(user);
-			}
+			// always a new record
+			userDAO.create(user);
 		} catch (Exception e) {
 			e.printStackTrace();
 			context.addMessage(null,
