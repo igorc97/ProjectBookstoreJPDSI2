@@ -4,22 +4,23 @@
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:f="http://java.sun.com/jsf/core"
         xmlns:p="http://primefaces.org/ui">
+        
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
 	<ui:composition template="/templates/page-template.xhtml">
 	<ui:define name="pageContent">
 	<div class="card">
-    	<h:form id="loginForm">
+    	<h:form>
 		<p:panel header="Formularz logowania" style="width: 100%;">
 		<p:messages/>
 		<center>
 		<h:panelGrid columns="2" columnClasses="labelColumn, fieldColumn">
 			<p:outputLabel value="Nazwa uzytkownika"/>
-			<p:inputText id="userName" value="#{userController.loginUser.userName}" label="UserName" />			
+			<p:inputText id="login" value="#{userListBB.login}"/>			
 						
 			<p:outputLabel value="Haslo"/>
-			<p:password id="password" value="#{userController.loginUser.password}" label="Password"/>
+			<p:password id="password" value="#{userListBB.pass}"/>
 			
-			<center><p:commandButton action="#{userController.login}" value="Dalej" update="loginForm"/></center>
+			<center><p:commandButton action="#{userListBB.loginUser()}" value="Dalej" type="submit"/></center>
 		</h:panelGrid>
 		</center>
 		</p:panel>

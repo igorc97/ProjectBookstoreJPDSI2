@@ -4,6 +4,9 @@
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:f="http://java.sun.com/jsf/core"
         xmlns:p="http://primefaces.org/ui">
+<f:metadata>
+	<f:viewAction action="#{userEditBB.onLoad()}"/>
+</f:metadata>
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
 <ui:composition template="/templates/page-template.xhtml">
 <ui:define name="pageContent">
@@ -15,16 +18,16 @@
         </f:facet>
 
         <h:outputText value="Imie:"/>
-        <h:outputText value=""/>
+       <!--  <h:outputText value="#{userEditBB.actualUser()}"/> -->
 
         <h:outputText value="Nazwisko:"/>
-        <h:outputText value=""/>
+        <h:outputText value="#{userEditBB.user.surname}"/>
 
         <h:outputText value="Data urodzenia:"/>
-        <h:outputText value=""/>
+        <h:outputText value="#{userEditBB.user.birthdate}"/>
 
         <h:outputText value="Email:"/>
-        <h:outputText value=""/>
+        <h:outputText value="#{userEditBB.user.email}"/>
         
         <h:outputText value="Twoje zamowienia:"/>
         <h:outputText value=""/>
