@@ -14,6 +14,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
+import org.primefaces.PrimeFaces;
+
 import bookstore_project.dao.UserDAO;
 import bookstore_project.dao.RoleDAO;
 import bookstore_project_ejbb.entities.Role;
@@ -27,6 +29,7 @@ public class UserEditBB implements Serializable {
 
 	private static final String PAGE_PERSON_LIST = "table?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
+	private static final String PAGE_PERSON_PROFILE = "profileView?faces-redirect=true";
 
 	private User user = new User();
 	private User loaded = null;
@@ -93,4 +96,6 @@ public class UserEditBB implements Serializable {
 
 		return PAGE_PERSON_LIST;
 	}
+	
+	
 }

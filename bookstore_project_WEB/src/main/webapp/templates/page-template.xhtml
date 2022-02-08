@@ -40,6 +40,11 @@
     	<p:linkButton outcome="contact" value="Kontakt" icon="pi pi-comments" style="margin-right:20px;">
         	<f:param name="productId" value="20"/>
     	</p:linkButton>
+    	<br/>
+    	<p:commandButton value="Wyloguj" action="#{userListBB.logout()}" icon="pi pi-undo" style="margin-right:20px;">
+        	<f:param name="productId" value="20"/>
+    	</p:commandButton>
+    <br/>
     </p:sidebar>
         <p:commandButton icon="pi pi-arrow-right" type="button" onclick="PF('sidebar1').show()" styleClass="p-mr-2" />
 

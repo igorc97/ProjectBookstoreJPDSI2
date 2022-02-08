@@ -1,5 +1,9 @@
 package bookstore_project.dao;
 
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +16,7 @@ import bookstore_project_ejbb.entities.User;
 
 @Stateless
 public class UserDAO {
-
+	private final static String UNIT_NAME = "bookstore_project-simplePU";
 	@PersistenceContext
 	EntityManager em;
 	public void create(User user) {
@@ -50,6 +54,20 @@ public class UserDAO {
 		User u = null;
 		Query query = em.createQuery("Select u from User u where u.surname = :surname");
 		query.setParameter("surname", surname);
+		try {
+			
+			u = (User) query.getSingleResult();
+			
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		return u;
+	}
+	
+	public User findByLogin(String login){
+		User u = null;
+		Query query = em.createQuery("Select u from User u where u.login = :login");
+		query.setParameter("login", login);
 		try {
 			
 			u = (User) query.getSingleResult();
@@ -101,4 +119,7 @@ public class UserDAO {
 
 		return list;
 	}
+	
+	
 }
+
