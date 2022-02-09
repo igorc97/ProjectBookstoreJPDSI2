@@ -14,10 +14,12 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
+import javax.faces.simplesecurity.RemoteClient;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import bookstore_project.dao.RoleDAO;
 import bookstore_project.dao.UserDAO;
 import bookstore_project_ejbb.entities.User;
 import bookstore_project_ejbb.entities.Role;
@@ -26,15 +28,16 @@ import bookstore_project_ejbb.entities.Role;
 @Named
 @RequestScoped
 public class UserListBB {
-	private static final String PAGE_PERSON_EDIT = "table?faces-redirect=true";
+	private static final String PAGE_PERSON_EDIT = "/pages/shop/table?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
-	private static final String PAGE_PERSON_REGISTRATION = "registrationView?faces-redirect=true";
-	private static final String PAGE_PERSON_PROFILE = "profileView?faces-redirect=true";
-	private static final String PAGE_MAIN = "index?faces-redirect=true";
+	private static final String PAGE_PERSON_REGISTRATION = "/public/registrationView?faces-redirect=true";
+	private static final String PAGE_PERSON_PROFILE = "/pages/userinfo/profileView?faces-redirect=true";
+	private static final String PAGE_MAIN = "/public/index?faces-redirect=true";
 
 	private String surname;
 	private String login;
 	private String pass;
+	private String nameRole;
 	
 
 	@Inject
@@ -48,6 +51,9 @@ public class UserListBB {
 
 	@EJB
 	UserDAO userDAO;
+	
+	@EJB
+	RoleDAO roleDAO;
 
 	public String getSurname() {
 		return surname;
@@ -66,6 +72,13 @@ public class UserListBB {
 	  
 	 public void setPass(String pass) { this.pass = pass; }
 	 
+	 public String getNameRole() {
+		 return nameRole;
+	 }
+	 
+	 public void setNameRole(String nameRole) {
+		 this.nameRole = nameRole;
+	 }
 
 	public List<User> getFullList() {
 		return userDAO.getFullList();
@@ -83,6 +96,22 @@ public class UserListBB {
 
 		// 2. Get list
 		list = userDAO.getList(searchParams);
+
+		return list;
+	}
+	
+	public List<Role> getList2() {
+		List<Role> list = null;
+
+		// 1. Prepare search params
+		Map<String, Object> searchParams = new HashMap<String, Object>();
+
+		if (surname != null && surname.length() > 0) {
+			searchParams.put("surname", surname);
+		}
+
+		// 2. Get list
+		list = roleDAO.getList2(searchParams);
 
 		return list;
 	}
@@ -124,20 +153,24 @@ public class UserListBB {
 					"Niepoprawny login lub hasło", null));
 			return PAGE_STAY_AT_THE_SAME;
 		}
+		Role role = new Role();
 		
-		/*
-		 * RemoteClient<User> client = new RemoteClient<User>(); //create new
-		 * RemoteClient client.setDetails(user);
-		 * 
-		 * List<String> roles = userDAO.getUserRolesFromDatabase(user); //get User roles
-		 * 
-		 * if (roles != null) { //save roles in RemoteClient for (String role: roles) {
-		 * client.getRoles().add(role); } }
-		 * 
-		 * //store RemoteClient with request info in session (needed for SecurityFilter)
-		 * HttpServletRequest request = (HttpServletRequest)
-		 * ctx.getExternalContext().getRequest(); client.store(request);
-		 */
+		  RemoteClient<User> client = new RemoteClient<User>(); //create new
+		  client.setDetails(user);
+		 
+		  List<String> roles = roleDAO.getRolesFromDB(role); //get User roles 
+			
+			if (roles != null) { //save roles in RemoteClient
+				for (String role4: roles) {
+					client.getRoles().add(role4);
+				}
+			}
+		  
+		  //store RemoteClient with request info in session (needed for SecurityFilter)
+		 HttpServletRequest request = (HttpServletRequest)
+		  ctx.getExternalContext().getRequest();
+		  client.store(request);
+		
 
 		// and enter the system (now SecurityFilter will pass the request)
 		return PAGE_MAIN;
