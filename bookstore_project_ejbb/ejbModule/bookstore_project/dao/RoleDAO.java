@@ -87,6 +87,9 @@ public class RoleDAO {
 	
 	 public List<String> getRolesFromDB(Role role){
 		 ArrayList<String> roles = new ArrayList<String>();
+		 //roles.add(role.toString());
+		 roles.add("User");
+		 roles.add("Admin");
 		 return roles;
 	 }
 	 
