@@ -27,9 +27,9 @@ import bookstore_project_ejbb.entities.User;
 public class UserEditBB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private static final String PAGE_PERSON_LIST = "table?faces-redirect=true";
+	private static final String PAGE_PERSON_LIST = "/pages/shop/table?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
-	private static final String PAGE_PERSON_PROFILE = "profileView?faces-redirect=true";
+	private static final String PAGE_PERSON_PROFILE = "/pages/userinfo/profileView?faces-redirect=true";
 
 	private User user = new User();
 	private User loaded = null;

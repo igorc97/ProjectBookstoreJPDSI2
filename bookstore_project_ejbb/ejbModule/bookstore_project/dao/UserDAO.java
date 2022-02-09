@@ -4,6 +4,7 @@ package bookstore_project.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import bookstore_project_ejbb.entities.Role;
 import bookstore_project_ejbb.entities.User;
 
 @Stateless
@@ -119,7 +121,10 @@ public class UserDAO {
 
 		return list;
 	}
-	
+	public List<String> getRolesFromDB(Role role){
+		 ArrayList<String> roles = new ArrayList<String>();
+		 return roles;
+	 }
 	
 }
 
