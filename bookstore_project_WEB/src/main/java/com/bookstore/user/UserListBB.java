@@ -147,17 +147,21 @@ public class UserListBB {
 
 	public String loginUser() {
 		FacesContext ctx = FacesContext.getCurrentInstance();
-		User user = userDAO.findByLogin(login);
+		//User user = userDAO.findByLogin(login); 
+		User user = userDAO.findByLoginAndPass(login, pass);
 		if(user == null) {
 			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"Niepoprawny login lub hasło", null));
 			return PAGE_STAY_AT_THE_SAME;
 		}
 		Role role = new Role();
+		//Role rolka = roleDAO.findByName("User");
+		
+		
 		
 		  RemoteClient<User> client = new RemoteClient<User>(); //create new
 		  client.setDetails(user);
-		 
+		  //client.getRoles().add(user.getRole(rolka));
 		  List<String> roles = roleDAO.getRolesFromDB(role); //get User roles 
 			
 			if (roles != null) { //save roles in RemoteClient
@@ -173,7 +177,8 @@ public class UserListBB {
 		
 
 		// and enter the system (now SecurityFilter will pass the request)
-		return PAGE_MAIN;
+		/* return PAGE_MAIN; */
+		  return PAGE_MAIN;
 	}
 	
 	

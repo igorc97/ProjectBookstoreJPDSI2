@@ -126,5 +126,19 @@ public class UserDAO {
 		 return roles;
 	 }
 	
+	public User findByLoginAndPass(String login, String pass){
+		User u = null;
+		Query query = em.createQuery("Select u from User u where u.login = :login and u.pass = :pass");
+		query.setParameter("login", login);
+		query.setParameter("pass", pass);
+		try {
+			
+			u = (User) query.getSingleResult();
+			
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		return u;
+	}
 }
 
