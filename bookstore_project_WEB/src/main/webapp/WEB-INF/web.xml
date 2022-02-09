@@ -39,10 +39,10 @@
 			<param-value>
 /javax.faces.resource : PUBLIC;
 /public : PUBLIC;
-/pages : admin;
-/pages/shop : user, admin;
-/pages/admin : admin;
-/pages/userinfo : user, admin;
+/pages : Admin;
+/pages/shop : User, Admin;
+/pages/admin : Admin;
+/pages/userinfo : User, Admin;
 			</param-value>
 		</init-param>
 		<init-param>
