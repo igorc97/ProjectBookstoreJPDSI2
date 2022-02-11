@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui">
+<!-- <f:metadata>
+	<f:viewAction action="#{userEditBB.onLoad()}"/>
+</f:metadata> -->
+<f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+<ui:composition template="/templates/page-template.xhtml">
+<ui:define name="pageContent">
+
+<p:panel header="Potwierdzenie" toggleable="false" collapsed="false" style="margin-bottom:1em;">
+
+<h:form>
+	<!-- <h:form prependId="false">
+		<table border="1" cellpadding="2" cellspacing="2">
+			<tr>
+				<th>Option</th>
+				<th>ID</th>
+				<th>Tytul</th>
+				<th>Cena</th>
+				<th>Ilosc</th>
+				<th>Lacznie: </th>
+			</tr>
+			<ui:repeat var="item" value="#{cartManagedBean.items}">
+				<tr>
+					<td align="center">
+						<h:commandLink value="X" action="#{cartManagedBean.delete(item.product)}"></h:commandLink>
+					</td>
+					<td>#{item.product.id}</td>
+					<td>#{item.product.name}</td>
+					<td>#{item.product.price}</td>
+					<td>#{item.quantity}</td>
+					<td>#{item.product.price * item.quantity}</td>
+				</tr>
+			</ui:repeat>
+			<tr>
+				<td colspan="5" align="right">Total</td>
+				<td>#{cartManagedBean.total()}</td>
+			</tr>
+		</table>
+		<br></br> -->
+		<h:commandButton value="Potwierdz zakup" action="#{orderEditBB.saveData()}" style="display: block; width:20%;text-align:center;" />
+	</h:form>
+</p:panel>
+  
+    </ui:define>
+</ui:composition>
+<ui:composition template="/templates/footer-snippet.xhtml">
+</ui:composition>
+</f:view>
+</html>

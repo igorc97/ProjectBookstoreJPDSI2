@@ -28,7 +28,7 @@ import bookstore_project_ejbb.entities.Role;
 @Named
 @RequestScoped
 public class UserListBB {
-	private static final String PAGE_PERSON_EDIT = "/pages/shop/table?faces-redirect=true";
+	private static final String PAGE_PERSON_EDIT = "/pages/admin/userEditPanel?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 	private static final String PAGE_PERSON_REGISTRATION = "/public/registrationView?faces-redirect=true";
 	private static final String PAGE_PERSON_PROFILE = "/pages/userinfo/profileView?faces-redirect=true";
@@ -174,7 +174,6 @@ public class UserListBB {
 		 HttpServletRequest request = (HttpServletRequest)
 		  ctx.getExternalContext().getRequest();
 		  client.store(request);
-		
 
 		// and enter the system (now SecurityFilter will pass the request)
 		/* return PAGE_MAIN; */

@@ -29,6 +29,9 @@ public class OrderDAO {
 	public Order find(Object id) {
 		return em.find(Order.class, id);
 	}
+	
+	
+	
 	public List<Order> getFullList(){
 		List<Order> list = null;
 		Query query = em.createQuery("Select o from order o");
@@ -46,11 +49,11 @@ public class OrderDAO {
 		String select = "select o ";
 		String from = "from Order o ";
 		String where = "";
-		String orderby = "order by o.idOrder asc, o.dateOfOrder";
+		String orderby = "order by o.idOrder asc";
 
 		// search for surname
 		String idOrder = (String) searchParams.get("idOrder");
-		if (surname != null) {
+		if (idOrder != null) {
 			if (where.isEmpty()) {
 				where = "where ";
 			} else {
