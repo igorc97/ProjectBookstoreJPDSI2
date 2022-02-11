@@ -1,5 +1,6 @@
-package com.bookstore.book;
+package com.bookstore.orderbook;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -13,47 +14,49 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
-import bookstore_project.dao.ProductDAO;
-import bookstore_project.dao.UserDAO;
-import bookstore_project_ejbb.entities.Book;
-import bookstore_project_ejbb.entities.User;
+import org.primefaces.PrimeFaces;
+
+import bookstore_project.dao.OrderbookDAO;
+import bookstore_project_ejbb.entities.Orderbook;
+import bookstore_project_ejbb.entities.Role;
+
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
 @ViewScoped
-public class BookEditBB implements Serializable {
-
+public class OrderBookEditBB implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	private static final String PAGE_PERSON_LIST = "table?faces-redirect=true";
+	
+	private static final String PAGE_PERSON_LIST = "/pages/shop/table?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
-
-	private Book book = new Book();
-	private Book loaded = null;
-
+	
+	private Orderbook orderbook = new Orderbook();
+	private Orderbook loaded = null;
+	
 	@EJB
-	ProductDAO productDAO;
-
+	OrderbookDAO orderbookDAO;
+	
 	@Inject
 	FacesContext context;
-
+	
 	@Inject
 	Flash flash;
-
-	public Book getBook() {
-		return book;
+	
+	public Orderbook getOrderbook() {
+		return orderbook;
 	}
-
+	
 	public void onLoad() throws IOException {
 		// 1. load person passed through session
-		// HttpSession session = (HttpSession) context.getExternalContext().getSession(true);
+		// HttpSession session = (HttpSession)
+		// context.getExternalContext().getSession(true);
 		// loaded = (Person) session.getAttribute("person");
 
 		// 2. load person passed through flash
-		loaded = (Book) flash.get("book");
+		loaded = (Orderbook) flash.get("orderbook");
 
 		// cleaning: attribute received => delete it from session
 		if (loaded != null) {
-			book = loaded;
+			orderbook = loaded;
 			// session.removeAttribute("person");
 		} else {
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Błędne użycie systemu", null));
@@ -64,21 +67,22 @@ public class BookEditBB implements Serializable {
 		}
 
 	}
-
+	
 	public String saveData() {
+
 		// no Person object passed
 		if (loaded == null) {
 			return PAGE_STAY_AT_THE_SAME;
 		}
+		//Role role = new Role();
+		//role.setIdRole(2);
+		
+		//Role role = roleDAO.findByName("User");
+		//user.setRole(role);
 
 		try {
-			if (Integer.valueOf(book.getIdBook()) == null) {
-				// new record
-				productDAO.create(book);
-			} else {
-				// existing record
-				productDAO.merge(book);
-			}
+			// always a new record
+			orderbookDAO.create(orderbook);
 		} catch (Exception e) {
 			e.printStackTrace();
 			context.addMessage(null,

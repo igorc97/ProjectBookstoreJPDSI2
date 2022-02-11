@@ -7,15 +7,6 @@
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
 <ui:composition template="/templates/page-template.xhtml">
 <ui:define name="pageContent">
-<p:panel header="Opcje wyszukiwania ludzie" toggleable="true" collapsed="true" style="margin-bottom: 1em;">
-		<h:form>
-			<h:panelGrid columns="2" cellpadding="5">
-				<h:outputLabel value="Szukaj:" />
-				<p:inputText value="#{userListBB.surname}" />
-				<p:commandButton value="Szukaj" update="form-table" />
-			</h:panelGrid>
-		</h:form>
-	</p:panel>
 	<p:panel header="Opcje wyszukiwania ksiazki" toggleable="true" collapsed="true" style="margin-bottom: 1em;">
 		<h:form>
 			<h:panelGrid columns="2" cellpadding="5">
@@ -59,53 +50,15 @@
             <p:column headerText="Opis">
                 <h:outputText value="#{u.description}" />
             </p:column>
+            
+            <p:column headerText="Opcje">
+                <!-- <h:outputText value="#{u.description}" /> -->
+                <p:commandButton action="#{orderListBB.newOrder()}" value="Kup"/>
+            </p:column>
             </p:dataTable>
 	</div>
 	</h:form>
-	<h:form id="form-table" style="margin-bottom:1em;">
-
-		<p:commandButton value="Dodaj nowa osobe"
-			action="#{userListBB.newUser()}" style="margin-bottom:1em;"/>
-
-		<p:dataTable value="#{userListBB.list}" var="p">
-
-			<p:column priority="5">
-				<f:facet name="header">
-					<h:outputText value="imie" />
-				</f:facet>
-				<h:outputText value="#{p.name}" />
-			</p:column>
-
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="nazwisko" />
-				</f:facet>
-				<h:outputText value="#{p.surname}" />
-			</p:column>
-
-			<p:column priority="4">
-				<f:facet name="header">
-					<h:outputText value="data ur." />
-				</f:facet>
-				<h:outputText value="#{p.birthdate}">
-					<f:convertDateTime pattern="dd-MM-yyyy" />
-				</h:outputText>
-			</p:column>
-
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="opcje" />
-				</f:facet>
-
-				<p:commandButton value="Edytuj"
-					action="#{userListBB.editUser(p)}" />
-
-				<p:commandButton value="Usun"
-					action="#{userListBB.deleteUser(p)}" update="@form" />
-			</p:column>
-
-		</p:dataTable>
-	</h:form>
+	
 </ui:define>
 </ui:composition>
 

@@ -1,6 +1,5 @@
-package com.bookstore.order;
+package com.bookstore.orderbook;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,22 +12,23 @@ import javax.faces.annotation.FacesConfig;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
-import javax.servlet.http.HttpSession;
 
-import bookstore_project.dao.OrderDAO;
+import bookstore_project.dao.OrderbookDAO;
 import bookstore_project_ejbb.entities.Order;
-import bookstore_project_ejbb.entities.User;
+import bookstore_project_ejbb.entities.Orderbook;
+import bookstore_project.dao.ProductDAO;
+import bookstore_project_ejbb.entities.Book;
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named
 @RequestScoped
-public class OrderListBB {
-	private static final String PAGE_CART = "/pages/shop/cart?faces-redirect=true";
+public class OrderBookListBB {
+
 	private static final String PAGE_PERSON_EDIT = "table?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
+	private static final String PAGE_BUY_CONFIRM = "cart?faces-redirect=true";
 	
-	private String idOrder;
-	private 
+	private int idOrderBook;
 	
 	@Inject
 	ExternalContext extcontext;
@@ -37,66 +37,69 @@ public class OrderListBB {
 	Flash flash;
 	
 	@EJB
-	OrderDAO orderDAO;
+	OrderbookDAO orderbookDAO;
 	
-	public String getidOrder() {
-		return idOrder;
+	@EJB
+	ProductDAO productDAO;
+	
+	public int getIdOrderBook() {
+		return idOrderBook;
 	}
 	
-	public void setIdOrder(String idOrder) {
-		this.idOrder = idOrder;
+	public void setIdOrderBook(int idOrderBook) {
+		this.idOrderBook = idOrderBook;
 	}
 	
-	public List<Order> getFullList(){
-		return orderDAO.getFullList();
-	}
-	
-	public List<Order> getList(){
-		List<Order> list = null;
+	public List<Orderbook> getList(){
+		List<Orderbook> list = null;
 		
 		//1. Prepare search params
 		Map<String,Object> searchParams = new HashMap<String, Object>();
 		
-		if (idOrder != null && idOrder.length() > 0){
-			searchParams.put("idOrder", idOrder);
+		if (Integer.toString(idOrderBook) != null && Integer.toString(idOrderBook).length() > 0){
+			searchParams.put("idOrderBook", idOrderBook);
 		}
 		
 		//2. Get list
-		list = orderDAO.getList(searchParams);
+		list = orderbookDAO.getList(searchParams);
 		
 		return list;
 	}
-
-	public String newOrder(){
-		Order order = new Order();
-		//pobierz id usera
-		//order.getUser().getIdUser();
+	
+	public String newOrderBook(){
+		Orderbook orderbook = new Orderbook();
 		
-		//pobierz
+		orderbook.getBook().addOrderbook(orderbook);
+		//pobierz cene produktu
+		
+		//pobierz id produktu
+		
+		//pobierz id order
 		
 		//1. Pass object through session
 		//HttpSession session = (HttpSession) extcontext.getSession(true);
 		//session.setAttribute("person", person);
 		
 		//2. Pass object through flash	
-		flash.put("order", order);
+		flash.put("orderbook", orderbook);
 		
-		return PAGE_CART;
+		return PAGE_BUY_CONFIRM;
 	}
-
-	public String editOrder(Order order){
+	
+	public String editOrderBook(Orderbook orderbook){
 		//1. Pass object through session
 		//HttpSession session = (HttpSession) extcontext.getSession(true);
 		//session.setAttribute("person", person);
 		
 		//2. Pass object through flash 
-		flash.put("order", order);
+		flash.put("orderbook", orderbook);
 		
 		return PAGE_PERSON_EDIT;
 	}
 
-	public String deleteOrder(Order order){
-		orderDAO.remove(order);
+	public String deleteOrderBokk(Orderbook orderbook){
+	
+		orderbookDAO.remove(orderbook);
 		return PAGE_STAY_AT_THE_SAME;
 	}
 }
