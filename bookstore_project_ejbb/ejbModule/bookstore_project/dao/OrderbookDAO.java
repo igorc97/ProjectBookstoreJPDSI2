@@ -1,6 +1,6 @@
 package bookstore_project.dao;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import bookstore_project_ejbb.entities.Orderbook;
-import bookstore_project_ejbb.entities.Book;
+
 
 @Stateless
 public class OrderbookDAO {

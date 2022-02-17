@@ -17,13 +17,13 @@
 		<center>
 		
 		<h:panelGrid columns="2" columnClasses="labelColumn, fieldColumn" var="p">
-			<p:outputLabel value="Nazwa uzytkownika"/>
+			<p:outputLabel value="Nazwa użytkownika"/>
 			<p:inputText id="login" value="#{userEditBB.user.login}" required="true" requiredMessage="Pole nie może być puste!" />			
 						
-			<p:outputLabel value="Haslo"/>
+			<p:outputLabel value="Hasło"/>
 			<p:password id="password" value="#{userEditBB.user.pass}" required="true" requiredMessage="Pole nie może być puste!"/>
 			
-			<p:outputLabel value="Imie"/>
+			<p:outputLabel value="Imię"/>
 			<p:inputText id="name" value="#{userEditBB.user.name}" required="true" requiredMessage="Pole nie może być puste!"/>
 			
 			<p:outputLabel value="Nazwisko"/>
@@ -32,7 +32,7 @@
 			<p:outputLabel value="Email"/>
 			<p:inputText id="email" value="#{userEditBB.user.email}" required="true" requiredMessage="Pole nie może być puste!"/>
 			
-			<p:outputLabel value="Data urodzin(rrrr-mm-dd)"/>
+			<p:outputLabel value="Data urodzin (rrrr-mm-dd)"/>
 			<p:inputText id="birthDate" value="#{userEditBB.user.birthdate}" required="true" requiredMessage="Pole nie może być puste!">
 				<f:convertDateTime pattern="yyyy-mm-dd" />
 			</p:inputText>

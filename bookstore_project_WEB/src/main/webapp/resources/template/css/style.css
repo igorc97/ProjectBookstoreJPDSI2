@@ -1,7 +1,8 @@
-@charset "UTF-8";
+
 body{
 	font-family: 'Century Gothic',helvetica,verdana,arial;
-	background: url("../img/w1.jpg.jsf?ln=template") no-repeat center center fixed;
+	background: url("../img/w2.jpg.xhtml?ln=template") no-repeat center center fixed;
+	
 	background-size: cover;
 	margin:0;
 }
