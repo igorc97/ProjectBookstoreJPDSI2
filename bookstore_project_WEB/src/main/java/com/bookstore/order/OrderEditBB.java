@@ -1,6 +1,6 @@
 package com.bookstore.order;
 
-import java.io.ByteArrayInputStream;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.text.ParseException;
@@ -13,13 +13,10 @@ import javax.faces.annotation.FacesConfig;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
-import javax.faces.simplesecurity.RemoteClient;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
 
-import org.primefaces.PrimeFaces;
 
 import bookstore_project.dao.OrderbookDAO;
 import bookstore_project.dao.ProductDAO;
@@ -42,29 +39,30 @@ public class OrderEditBB implements Serializable {
 	private static final String PAGE_INDEX = "/public/index?faces-redirect=true";
 	private Order order = new Order();
 	private Order loaded = null;
-	
+	private Book book;
+
 	@EJB
 	OrderDAO orderDAO;
-	
+
 	@EJB
 	UserDAO userDAO;
-	
+
 	@EJB
 	ProductDAO productDAO;
-	
+
 	@EJB
 	OrderbookDAO orderbookDAO;
-	
+
 	@Inject
 	FacesContext context;
-	
+
 	@Inject
 	Flash flash;
-	
+
 	public Order getOrder() {
 		return order;
 	}
-	
+
 	public void onLoad() throws IOException {
 		// 1. load person passed through session
 		// HttpSession session = (HttpSession)
@@ -87,54 +85,56 @@ public class OrderEditBB implements Serializable {
 		}
 
 	}
-	
+
 	public String saveData() throws ParseException {
 
 		// no Person object passed
 		if (loaded == null) {
 			return PAGE_STAY_AT_THE_SAME;
 		}
-		//Role role = new Role();
-		//role.setIdRole(2);
-		
-		//Role role = roleDAO.findByName("User");
-		//user.setRole(role);
-	
-		Calendar calendar = Calendar.getInstance();
-		int noOfDays = 14;
-		String formatted = calendar.toString();
-		Date startDate = new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(formatted).getTime());
-		//Date Hehe = calendar.getTime().;
-		//String czas =					          //date of order
-		order.setDateOfOrder(startDate);
-		
-		calendar.add(Calendar.DATE, noOfDays);
-		String nowy = calendar.toString();
-		Date newDate = new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(nowy).getTime());
-		//Date nowy = calendar.add(Calendar.DAY_OF_YEAR, noOfDays);
-		//calendar.add(Calendar.DAY_OF_YEAR, noOfDays);  // date of order receive
-		order.setDateOfReceive(newDate);
-		//User user = new User();
-		//order.setUser(user);
-		Orderbook orderbook = new Orderbook();
-		order.addOrderbook(orderbook);
-		//orderbook.setBook();
-		
-		orderbook.setOrder(order);
-		//orderbook.setPrice(productDAO.);
-		
-		
-		//User user = user.getIdUser();
-		//order.setUser(user);
+		// Role role = new Role();
+		// role.setIdRole(2);
+
+		// Role role = roleDAO.findByName("User");
+		// user.setRole(role);
+		Calendar calendar = Calendar.getInstance(); int noOfDays = 14; String
+		  formatted = calendar.toString(); 
+		  Date startDate = new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(formatted).getTime()); //Date Hehe =
+		  calendar.getTime(); 
+		  order.setDateOfOrder(startDate);
+		  
+		  calendar.add(Calendar.DATE, noOfDays); String nowy = calendar.toString();
+		  Date newDate = new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(nowy).getTime()); //Date nowy =
+		  calendar.add(Calendar.DAY_OF_YEAR, noOfDays);
+		  //calendar.add(Calendar.DAY_OF_YEAR, noOfDays); // date of order receive
+		  order.setDateOfReceive(newDate); //User user = new User();
+		  //order.setUser(user);
+		  
+		  String user = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser(); 
+		  User userek = userDAO.find(user); 
+		  order.setUser(userek);
+		  
+		  Orderbook orderbook = new Orderbook();
+		  flash.put("orderbook", orderbook);
+		  
+		  orderbook.setBook(book); 
+		  orderbook.setOrder(order);
+		  orderbook.setPrice(book.getPrice());
+		  
+		  //orderbook.setBook(); orderbook.setOrder(order);
+		  order.addOrderbook(orderbook); //orderbook.setPrice(productDAO.);
+		  
+		 
+		// User user = user.getIdUser();
+		// order.setUser(user);
 		// stworzenie orderbooka
-		//Orderbook orderbook = new Orderbook();
-	//	orderbook.setPrice(orderbookDAO.);
-		
-		
-		
+		// Orderbook orderbook = new Orderbook();
+		// orderbook.setPrice(orderbookDAO.);
+
 		try {
 			// always a new record
 			orderDAO.create(order);
+			orderbookDAO.create(orderbook);
 		} catch (Exception e) {
 			e.printStackTrace();
 			context.addMessage(null,

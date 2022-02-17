@@ -14,10 +14,10 @@
 		<p:messages/>
 		<center>
 		<h:panelGrid columns="2" columnClasses="labelColumn, fieldColumn">
-			<p:outputLabel value="Nazwa uzytkownika"/>
+			<p:outputLabel value="Nazwa użytkownika"/>
 			<p:inputText id="login" value="#{userListBB.login}"/>			
 						
-			<p:outputLabel value="Haslo"/>
+			<p:outputLabel value="Hasło"/>
 			<p:password id="password" value="#{userListBB.pass}"/>
 			
 			<center><p:commandButton action="#{userListBB.loginUser()}" value="Dalej" type="submit"/></center>

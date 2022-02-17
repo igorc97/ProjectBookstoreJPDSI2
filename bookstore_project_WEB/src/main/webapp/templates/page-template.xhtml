@@ -10,56 +10,65 @@
 
 	<ui:define name="title">
 		<h:panelGroup>
-			Ksiegarnia internetowa
+			Księgarnia internetowa
 		</h:panelGroup>
 	</ui:define>
 
 	<ui:define name="content">
 			<p:sidebar widgetVar="sidebar1">
+			<center>
         <h3>Menu</h3>
-        <p:linkButton outcome="/public/index" value="Strona glowna" icon="pi pi-star" style="margin-right:20px, ;">
+        <p:linkButton outcome="/public/index" value="Strona główna" icon="pi pi-star" style="margin-right:20px, ;">
         	
     	</p:linkButton>
+    <br/>
     <br/>
     	<p:commandButton value="Rejestracja" action="#{userListBB.newUser()}" icon="pi pi-user-plus" style="margin-right:20px;">
         	
     	</p:commandButton>
     <br/>
+    <br/>
     	<p:linkButton outcome="/loginView" value="Login" icon="pi pi-id-card" style="margin-right:20px;">
-        	
     	</p:linkButton>
+    <br/>
     <br/>
         <p:linkButton outcome="/pages/userinfo/profileView" value="Profil" icon="pi pi-user" style="margin-right:20px;">
         	
     	</p:linkButton>
     <br/>
+    <br/>
     	<p:linkButton outcome="/pages/shop/table" value="Sklep" icon="pi pi-shopping-cart" style="margin-right:20px;">
         	
     	</p:linkButton>
+    <br/>
     <br/>
     	<p:linkButton outcome="/public/contact" value="Kontakt" icon="pi pi-comments" style="margin-right:20px;">
         	
     	</p:linkButton>
     	
-    	<br/>
+    <br/>
+    <br/>
     	<p:linkButton outcome="/pages/admin/adminpanel" value="Panel administracyjny" icon="pi pi-star" style="margin-right:20px;">
         	
     	</p:linkButton>
-    	<br/>
+    <br/>
+    <br/>
     	<p:commandButton value="Wyloguj" action="#{userListBB.logout()}" icon="pi pi-undo" style="margin-right:20px;">
         	
     	</p:commandButton>
     <br/>
+    <br/>
+    </center>
     </p:sidebar>
         <p:commandButton icon="pi pi-arrow-right" type="button" onclick="PF('sidebar1').show()" styleClass="p-mr-2" />
 
-		<p:panel header="Witamy" styleClass="bottom-space" toggleable="true" togglespeed="500"><h:form>
+		<p:panel header="Witamy" styleClass="bottom-space" toggleable="true" togglespeed="500" style="text-align: center;"><h:form>
 			<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
 			
         <p:fieldset>
             <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" update="msgs"/>
             <p class="p-m-0">
-                <center>Witamy w ksiegarni internetowej "Szybka ksiazka". Mamy nadzieje, ze spedzony tutaj czas bedziesz wspominal/a jako intuicyjne zakupy z ekspresowa dostawa.</center> 
+                <center>Witamy w księgarni internetowej "Szybka książka". Mamy nadzieję, że spędzony tutaj czas będziesz wspominał/a jako intuicyjne zakupy z ekspresową dostawą.</center> 
             </p>
         </p:fieldset>
 		</h:form></p:panel>

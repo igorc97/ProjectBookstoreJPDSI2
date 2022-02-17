@@ -1,6 +1,6 @@
 package com.bookstore.order;
 
-import java.util.Date;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,13 +11,13 @@ import javax.enterprise.context.RequestScoped;
 import javax.ejb.EJB;
 import javax.faces.annotation.FacesConfig;
 import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
+
 import javax.faces.context.Flash;
-import javax.servlet.http.HttpSession;
+
 
 import bookstore_project.dao.OrderDAO;
 import bookstore_project_ejbb.entities.Order;
-import bookstore_project_ejbb.entities.User;
+
 
 @FacesConfig(version = FacesConfig.Version.JSF_2_3)
 @Named

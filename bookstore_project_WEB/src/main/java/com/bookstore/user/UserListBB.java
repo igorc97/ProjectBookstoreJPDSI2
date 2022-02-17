@@ -167,6 +167,7 @@ public class UserListBB {
 			if (roles != null) { //save roles in RemoteClient
 				for (String role4: roles) {
 					client.getRoles().add(role4);
+					//client.getDetails().getIdUser();
 				}
 			}
 		  
@@ -178,6 +179,8 @@ public class UserListBB {
 		// and enter the system (now SecurityFilter will pass the request)
 		/* return PAGE_MAIN; */
 		  return PAGE_MAIN;
+		  //String userus = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+		  
 	}
 	
 	

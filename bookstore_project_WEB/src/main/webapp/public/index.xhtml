@@ -12,165 +12,118 @@
 	 <p:panel header="." toggleable="true" togglespeed="500">
         <h:graphicImage name="img/pic2.jpg" library="template" style="width:100%; height:20%" />
      </p:panel>   
-		<p:panel header="Sprawdz to - w celu zamkniecia kliknij podwojnie na dana karte" toggleable="true" togglespeed="500">
+     		<br/>
+     		<br/>
+		<p:panel header="Sprawdź to - w celu zamknięcia kliknij podwójnie na daną kartę" toggleable="true" togglespeed="500" style="text-align: center;" >
 		
 			<p:messages id="msg" />
 <!-- Karty -->			
 			<div class="p-grid p-formgrid ui-fluid">
         <div class="p-col-12 p-mb-2 p-lg-4 p-mb-lg-0">
+        <center>
 			<p:card style="width: 40em" widgetVar="karta" closeable="true" closespeed="500">
 			<p:effect type="fold" event="dblclick"/>
     <f:facet name="header">
         <h:graphicImage name="img/usercard.png" library="template"/>
     </f:facet>
     <f:facet name="title">
-        Ksiegarnia internetowa
+        Księgarnia internetowa
     </f:facet>
     <f:facet name="subtitle">
         Rejestracja
     </f:facet>
 
-    <p>W celu zlozenia zamowienia w naszej ksiegarni, wymagamy od uzytkownika aby zarejestrowal konto lub zalogowal sie na istniejace</p>
+    <p>W celu zlozenia zamówienia w naszej księgarni, wymagamy od użytkownika aby zarejestrowal konto lub zalogował się na istniejące</p>
 
     <f:facet name="footer">
         
     </f:facet>
 </p:card>
+</center>
 </div>
-
+<br/><br/>
 <div class="p-col-12 p-mb-2 p-lg-4 p-mb-lg-0">	
+<center>
 	<p:card style="width: 40em" name="karta2">
 	<p:effect type="fold" event="dblclick"/>
     <f:facet name="header">
         <h:graphicImage name="img/usercard.png" library="template"/>
     </f:facet>
     <f:facet name="title">
-        Ksiegarnia internetowa
+        Księgarnia internetowa
     </f:facet>
     <f:facet name="subtitle">
         Kontakt
     </f:facet>
 
-    <p>W przypadku jakichkolwiek problemow lub watpliwosci zachecamy do kontaktu. W tym celu nalezy w Menu wybrac opcje "Kontakt" a dane kontaktowe do naszej ksiegarni wyswietla sie na stronie</p>
+    <p>W przypadku jakichkolwiek problemów lub wątpliwości zachęcamy do kontaktu. W tym celu należy w Menu wybrac opcje "Kontakt" a dane kontaktowe do naszej księgarni wyświetlą się na stronie</p>
 
     <f:facet name="footer">
         
     </f:facet>
 </p:card>
+</center>
 </div>
+<br/><br/>
 <div class="p-col-12 p-mb-2 p-lg-4 p-mb-lg-0">
+<center>
 	<p:card style="width: 40em" name="karta3">
 	<p:effect type="fold" event="dblclick"/>
     <f:facet name="header">
         <h:graphicImage name="img/usercard.png" library="template"/>
     </f:facet>
     <f:facet name="title">
-        Ksiegarnia internetowa
+        Księgarnia internetowa
     </f:facet>
     <f:facet name="subtitle">
-        Gwarancja jakosci
+        Gwarancja jakości
     </f:facet>
 
-    <p>Jestesmy nowoczesna ksiegarnia i stawiamy przede wszystkim na zadowolenie naszych klientow. Oznacza to, ze ceny naszych produktow sa systematycznie sprawdzane tak, aby ustalic mozliwie najnizsza cene. Oprocz tego gwarantujemy szybkie dostarczenie zamowienia oraz atrakcyjne promocje i kupony rabatowe dla pierwszego zamowienia.</p>
+    <p>Jesteśmy nowoczesną księgarnią i stawiamy przede wszystkim na zadowolenie naszych klientów. Oznacza to, że ceny naszych produktów są systematycznie sprawdzane tak, aby ustalić możliwie najniższą cenę. Oprócz tego gwarantujemy szybkie dostarczenie zamówienia oraz atrakcyjne promocje i kupony rabatowe dla pierwszego zamówienia.</p>
 
     <f:facet name="footer">
         
     </f:facet>
 </p:card>
+</center>
 </div></div>
-			<!-- Wstep -->
-		
-<!--Opcje wyszukiwania 
-	<p:panel header="Opcje wyszukiwania" toggleable="true" collapsed="true" style="margin-bottom: 1em;">
-		<h:form>
-			<h:panelGrid columns="2" cellpadding="5">
-				<h:outputLabel value="nazwisko:" />
-				<p:inputText />
-			</h:panelGrid>
-		</h:form>
-	</p:panel>
-	
-	Tabela do ksiazek
-	<h:form>
-	<div class="card">
-		<p:dataTable var="product" value="">
-		<p:column headerText="ISBN">
-			<h:outputText value=""/>
-		</p:column>
-		
-		<p:column headerText="Tytul">
-                <h:outputText value="" />
-            </p:column>
-
-            <p:column headerText="Autor">
-                <h:outputText value="" />
-            </p:column>
-
-            <p:column headerText="Dostepnosc">
-                <h:outputText value="" />
-            </p:column>
-            
-            <p:column headerText="Cena">
-                <h:outputText value="" />
-            </p:column>
-            
-            <p:column headerText="Wydawnictwo">
-                <h:outputText value="" />
-            </p:column>
-            
-            <p:column headerText="Data wydania">
-                <h:outputText value="" />
-            </p:column>
-            
-            <p:column headerText="Opis">
-                <h:outputText value="" />
-            </p:column>
-            </p:dataTable>
-	</div>
-	</h:form>
-	
-	
-	<h:link value="table" outcome="table" />
-	<br/>
-	<h:link value="registrationView" outcome="registrationView" />
-	<br/> 
-	<h:link value="contact" outcome="contact" />
-	<br/>
-	<h:link value="profileView" outcome="profileView" /> -->
 		</p:panel>
 	
 	
-	
-	<p:panel header="Ocen nas!" toggleable="true" togglespeed="500" style="height: 30em">
+			<br/>
+     		<br/>
+	<p:panel header="Oceń nas!" toggleable="true" togglespeed="500" style="height: 30em; text-align: center;">
 	<h:form id ="poll">
 	<div class="p-grid p-text-center">
                 <div class="p-field p-col-12 p-md-4" style="position:relative; float: left; margin: 20px; margin-left: 29em">
                 <div class="knob-container ui-corner-all" >
-               <h5>Ilosc produktow</h5>
+               <h5 style="margin-left: 3em">Ilość produktów</h5>
                     <p:knob foregroundColor="#2196F3" backgroundColor="#495057" value="0"/>
                 </div>
                 </div>
                 <div class="p-field p-col-12 p-md-4" style="position:relative; float: left; margin: 20px">
                 <div class="knob-container ui-corner-all">
-                <h5>Szybkosc dostawy</h5>
+                <h5 style="margin-left: 3em">Szybkość dostawy</h5>
                     <p:knob foregroundColor="#2196F3" backgroundColor="#495057" value="0"/>
                 </div>
                 </div>
                 <div class="p-field p-col-12 p-md-4" style="position:relative; float: left; margin: 20px">
                 <div class="knob-container ui-corner-all">
-          <h5>Kontakt z firma</h5>
+          <h5 style="margin-left: 3em">Kontakt z firmą</h5>
                     <p:knob foregroundColor="#2196F3" backgroundColor="#495057" value="0"/>
                 </div>
                 </div>
                 <div class="p-field p-col-12 p-md-4" style="position:relative; float: left; margin: 20px; margin-right: 5em">
                 <div class="knob-container ui-corner-all">
-               <h5>Problemy z przesylkami</h5>
+               <h5 style="margin-left: 3em">Ogólne zadowolenie z transakcji</h5>
                     <p:knob foregroundColor="#2196F3" backgroundColor="#495057" value="0"/>
                 </div></div>
                 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 				<center><p:commandButton action="#{userController.poll}" value="Dalej" update="poll"/></center>
 				</div>
     </h:form>
+    
+    			
         </p:panel>
 	</ui:define>
 </ui:composition>
