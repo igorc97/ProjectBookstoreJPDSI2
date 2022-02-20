@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import bookstore_project_ejbb.entities.Order;
+import bookstore_project_ejbb.entities.Role;
 import bookstore_project_ejbb.entities.User;
 
 
@@ -83,4 +84,6 @@ public class OrderDAO {
 
 		return list;
 	}
+	
+
 }

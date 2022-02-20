@@ -40,6 +40,7 @@ public class OrderEditBB implements Serializable {
 	private Order order = new Order();
 	private Order loaded = null;
 	private Book book;
+	private Orderbook orderbook = new Orderbook();
 
 	@EJB
 	OrderDAO orderDAO;
@@ -59,10 +60,18 @@ public class OrderEditBB implements Serializable {
 	@Inject
 	Flash flash;
 
+	public Book getBook() {
+		return book;
+	}
+	
 	public Order getOrder() {
 		return order;
 	}
 
+	public Orderbook getOrderBook() {
+		return orderbook;
+	}
+	
 	public void onLoad() throws IOException {
 		// 1. load person passed through session
 		// HttpSession session = (HttpSession)
@@ -89,41 +98,44 @@ public class OrderEditBB implements Serializable {
 	public String saveData() throws ParseException {
 
 		// no Person object passed
-		if (loaded == null) {
-			return PAGE_STAY_AT_THE_SAME;
-		}
+		//if (loaded == null) {
+		//	return PAGE_STAY_AT_THE_SAME;
+		//}
+		
+		
+		//order.setOrderbooks(orderbook);
+		
+		
 		// Role role = new Role();
 		// role.setIdRole(2);
 
 		// Role role = roleDAO.findByName("User");
 		// user.setRole(role);
-		Calendar calendar = Calendar.getInstance(); int noOfDays = 14; String
-		  formatted = calendar.toString(); 
-		  Date startDate = new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(formatted).getTime()); //Date Hehe =
-		  calendar.getTime(); 
-		  order.setDateOfOrder(startDate);
-		  
-		  calendar.add(Calendar.DATE, noOfDays); String nowy = calendar.toString();
-		  Date newDate = new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(nowy).getTime()); //Date nowy =
-		  calendar.add(Calendar.DAY_OF_YEAR, noOfDays);
-		  //calendar.add(Calendar.DAY_OF_YEAR, noOfDays); // date of order receive
-		  order.setDateOfReceive(newDate); //User user = new User();
-		  //order.setUser(user);
-		  
-		  String user = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser(); 
-		  User userek = userDAO.find(user); 
-		  order.setUser(userek);
-		  
-		  Orderbook orderbook = new Orderbook();
-		  flash.put("orderbook", orderbook);
-		  
-		  orderbook.setBook(book); 
-		  orderbook.setOrder(order);
-		  orderbook.setPrice(book.getPrice());
-		  
-		  //orderbook.setBook(); orderbook.setOrder(order);
-		  order.addOrderbook(orderbook); //orderbook.setPrice(productDAO.);
-		  
+		/*
+		 * Calendar calendar = Calendar.getInstance(); int noOfDays = 14; String
+		 * formatted = calendar.toString(); Date startDate = new java.sql.Date(new
+		 * SimpleDateFormat("yyyy-MM-dd").parse(formatted).getTime()); //Date Hehe =
+		 * calendar.getTime(); order.setDateOfOrder(startDate);
+		 * 
+		 * calendar.add(Calendar.DATE, noOfDays); String nowy = calendar.toString();
+		 * Date newDate = new java.sql.Date(new
+		 * SimpleDateFormat("yyyy-MM-dd").parse(nowy).getTime()); //Date nowy =
+		 * calendar.add(Calendar.DAY_OF_YEAR, noOfDays);
+		 * //calendar.add(Calendar.DAY_OF_YEAR, noOfDays); // date of order receive
+		 * order.setDateOfReceive(newDate); //User user = new User();
+		 * //order.setUser(user);
+		 * 
+		 * String user =
+		 * FacesContext.getCurrentInstance().getExternalContext().getRemoteUser(); User
+		 * userek = userDAO.find(user); order.setUser(userek);
+		 * 
+		 * //Orderbook orderbook = new Orderbook(); //flash.put("orderbook", orderbook);
+		 * 
+		 * orderbook.setBook(book); orderbook.setOrder(order);
+		 * orderbook.setPrice(book.getPrice()); orderbook.setOrder(order);
+		 * //orderbook.setBook(); orderbook.setOrder(order);
+		 * order.addOrderbook(orderbook); //orderbook.setPrice(productDAO.);
+		 */		  
 		 
 		// User user = user.getIdUser();
 		// order.setUser(user);
