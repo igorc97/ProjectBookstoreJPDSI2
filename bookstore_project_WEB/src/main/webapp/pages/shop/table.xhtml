@@ -53,7 +53,7 @@
             
             <p:column headerText="Opcje">
                 <!-- <h:outputText value="#{u.description}" /> -->
-                <p:commandButton action="#{orderListBB.newOrder()}" value="Kup"/>
+                <p:commandButton action="#{orderListBB.newOrder(u, remoteClient.details)}" value="Kup"/>
             </p:column>
             </p:dataTable>
 	</div>
