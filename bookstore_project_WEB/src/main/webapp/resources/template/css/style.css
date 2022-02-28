@@ -49,4 +49,9 @@ body{
     .customPanelGrid .ui-panelgrid-content {
         align-items: center;
     }
+    
+     .ui-analog-clock {
+        width: 200px;
+        
+    }
  

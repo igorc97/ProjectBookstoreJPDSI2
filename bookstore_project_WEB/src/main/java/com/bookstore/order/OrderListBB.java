@@ -17,8 +17,9 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.ejb.EJB;
 import javax.faces.annotation.FacesConfig;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
-
+import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 
 import bookstore_project.dao.UserDAO;
@@ -38,15 +39,21 @@ public class OrderListBB {
 	private static final String PAGE_CART = "/pages/shop/cart?faces-redirect=true";
 	private static final String PAGE_PERSON_EDIT = "table?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
-	
+	private static final String PAGE_INDEX = "/public/index?faces-redirect=true";
+	private String isbn;
 	private String idOrder;
+	private String login;
 	private Book book;
 	private Order order;
 	private Orderbook orderbook;
 	private User user;
 	private List<Orderbook> orderbooks;
+	
 	@Inject
 	ExternalContext extcontext;
+	
+	@Inject
+	FacesContext context;
 	
 	@Inject
 	Flash flash;
@@ -89,17 +96,38 @@ public class OrderListBB {
 	}
 
 	public String newOrder(Book u, User remoteClient){
+			
+					
+	book = u;
+	order = new Order();
+	
+		//long millis = System.currentTimeMillis();
+		//java.sql.Date date = new java.sql.Date(millis);
+	
+	Date today = java.sql.Date.valueOf(java.time.LocalDate.now());
+	Date receivedate = java.sql.Date.valueOf(java.time.LocalDate.now().plusWeeks(2));
+		order.setDateOfOrder(today);
+			System.out.println(receivedate);
+		order.setDateOfReceive(receivedate);
 		
-		book = u;
-		order = new Order();
-		orderbook = new Orderbook();
-		order.setUser(remoteClient); //idUser
-		long millis = System.currentTimeMillis();
-		java.sql.Date date = new java.sql.Date(millis);
-		order.setDateOfOrder(date); //DATE OF ORDER
-		long newmillis = millis + 1209600000;
-		java.sql.Date nowadata = new java.sql.Date(newmillis);
-		order.setDateOfReceive(nowadata); //DATE OF RECEIVE
+	//order.setDateOfOrder(date); //DATE OF ORDER
+		//long newmillis = millis + 1209600000;
+		//java.sql.Date nowadata = new java.sql.Date(newmillis);
+	
+	
+	//order.setDateOfReceive(nowadata); //DATE OF RECEIVE
+		//order.setUser(remoteClient); //idUser
+		//int a = remoteClient.getIdUser();
+		//String login2 = remoteClient.getLogin();
+		//User idusera = userDAO.findByIdUser(a);
+		
+		//User user = userDAO.find(userDAO.getUserID(login2));
+	//System.out.println(user.getName());
+		User user = userDAO.findBySurname(remoteClient.getSurname());
+			System.out.println(user);
+		order.setUser(user);
+	//
+		//order.setOrderbooks(orderbooks);
 		/*
 		 * SimpleDateFormat format = new SimpleDateFormat("yyyy-M-dd"); Calendar
 		 * calendar = Calendar.getInstance(); Date data1; try { data1 =
@@ -135,10 +163,20 @@ public class OrderListBB {
 		//order.setDateOfReceive(calendar.getTime());
 		//order.setOrderbooks(orderbooks);
 		
+		
+		
+		
+		
+		
+		 //.setOrder niby id ale chyba powinnen byc sam order
+		orderbook = new Orderbook();
 		//orderbook = b;
 		orderbook.setBook(book); //idBook
+		
+		
 		orderbook.setOrder(order); //idOrder
 		orderbook.setPrice(book.getPrice()); //price
+		//order.setOrderbooks(orderbooks);
 		///orderbook.setIdOrderBook(0);             //??
 		//Order order = new Order();
 		//Orderbook orderbook = new Orderbook();
@@ -154,8 +192,23 @@ public class OrderListBB {
 		//2. Pass object through flash	
 		//flash.put("order", order);
 		//flash.put("orderbook", orderbook);
+		try {
+			// always a new record
+			orderDAO.create(order);
+			orderbookDAO.create(orderbook);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			context.addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "wystąpił błąd podczas zapisu zamówienia", null));
+			return PAGE_STAY_AT_THE_SAME;
+		}
+
+		return PAGE_INDEX;
+	
 		
-		return PAGE_CART;
+		
 	}
 
 	public String editOrder(Order order){
@@ -208,6 +261,22 @@ public class OrderListBB {
 		this.orderbook = orderbook;
 	}
 	
+	
+	public String getLogin() {
+		return login;
+	}
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	
+	public String getIsbn() {
+		return isbn;
+	}
+	
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+	
 	public List<Orderbook> getOrderbooks() {
 		return this.orderbooks;
 	}
@@ -215,5 +284,4 @@ public class OrderListBB {
 	public void setOrderbooks(List<Orderbook> orderbooks) {
 		this.orderbooks = orderbooks;
 	}
-	
 }

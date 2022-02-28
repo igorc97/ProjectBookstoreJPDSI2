@@ -83,7 +83,7 @@ public class UserEditBB implements Serializable {
 		
 	Role role = roleDAO.findByName("User");
 		user.setRole(role);
-
+	
 		try {
 			// always a new record
 			userDAO.create(user);

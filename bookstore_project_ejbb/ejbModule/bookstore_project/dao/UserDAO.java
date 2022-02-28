@@ -19,6 +19,9 @@ import bookstore_project_ejbb.entities.User;
 @Stateless
 public class UserDAO {
 	private final static String UNIT_NAME = "bookstore_project-simplePU";
+	private Query query;
+	
+	
 	@PersistenceContext
 	EntityManager em;
 	public void create(User user) {
@@ -76,6 +79,20 @@ public class UserDAO {
 			
 			}catch (Exception e) {
 				e.printStackTrace();
+			}
+		return u;
+	}
+	
+	public User findByIdUser(int idUser){
+		User u = null;
+		Query query = em.createQuery("Select u from User u where u.idUser = :idUser");
+		query.setParameter("idUser", idUser);
+		try {
+			
+			u = (User) query.getSingleResult();
+			
+			}catch (Exception e) {
+				e.printStackTrace();		
 			}
 		return u;
 	}
@@ -140,5 +157,42 @@ public class UserDAO {
 			}
 		return u;
 	}
+	
+	public int getUserID(String login) {
+		int id = 0;
+		String where = "";
+
+		where = createWhere("login", login, where);
+		query = em.createQuery("SELECT u.idUser FROM User u " + where);
+		query.setParameter("login", login);
+
+		try {
+			id = (int) query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return id;
+	}
+	
+	private String createWhere(String paramName, String param, String currentWhere) {
+		String where = currentWhere;
+
+		if (param != null) {
+			if (where.isEmpty()) {
+				where = "WHERE ";
+			} else {
+				where += "AND ";
+			}
+			if (paramName.equals("login")) {
+				where += "u." + paramName + " like :" + paramName + " ";
+			} else if (paramName.equals("name")) {
+				where += "r." + paramName + " like:" + paramName + " ";
+			}
+		}
+
+		return where;
+	}
+
 }
 

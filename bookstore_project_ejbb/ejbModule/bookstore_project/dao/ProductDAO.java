@@ -12,7 +12,8 @@ import bookstore_project_ejbb.entities.Book;
 
 @Stateless
 public class ProductDAO {
-
+	private Query query;
+	
 	@PersistenceContext
 	EntityManager em;
 	public void create(Book book) {
@@ -77,5 +78,41 @@ public class ProductDAO {
 		}
 
 		return list;
+	}
+	public int getBookID(String isbn) {
+		int id = 0;
+		String where = "";
+
+		where = createWhere("isbn", isbn, where);
+		query = em.createQuery("SELECT b.idBook FROM book b " + where);
+		query.setParameter("isbn", isbn);
+
+		try {
+			id = (int) query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return id;
+	}
+	
+	private String createWhere(String paramName, String param, String currentWhere) {
+		String where = currentWhere;
+
+		if (param != null) {
+			if (where.isEmpty()) {
+				where = "where ";
+			} else {
+				where += "and ";
+			}
+			if (paramName.equals("isbn") || paramName.equals("status")) {
+				where += "b." + paramName + " like :" + paramName + " ";
+			}
+			if (paramName.equals("title")) {
+				where += "bi." + paramName + " like :" + paramName + " ";
+			}
+		}
+
+		return where;
 	}
 }

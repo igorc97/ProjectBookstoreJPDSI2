@@ -7,8 +7,11 @@
 <f:view contentType="text/html;charset=UTF-8" encoding="UTF-8" >
 <ui:composition template="/templates/page-template.xhtml">
 <ui:define name="pageContent">
-
-
+<center>
+<p:commandButton value="Dodaj nowa pozycje w sklepie" action="#{bookListBB.newBook()}" icon="pi pi-book" style="margin-right:20px;">
+</p:commandButton>
+</center>	
+<br/>
 <p:panel header="Opcje wyszukiwania - uzytkownicy" toggleable="true" collapsed="true" style="margin-bottom: 1em; text-align: center;">
 		<h:form>
 			<h:panelGrid columns="2" cellpadding="5">
@@ -77,8 +80,7 @@
 					<h:outputText value="Opcje" />
 				</f:facet>
 
-				<p:commandButton value="Edytuj"
-					action="#{userListBB.editUser(p)}" />
+	
 
 				<p:commandButton value="Usun"
 					action="#{userListBB.deleteUser(p)}" update="@form" />
@@ -137,11 +139,61 @@
 					<h:outputText value="Opcje" />
 				</f:facet>
 
-				<p:commandButton value="Edytuj"
-					action="#{orderListBB.editOrder(o)}" />
+			
 
 				<p:commandButton value="Usun"
 					action="#{orderListBB.deleteOrder(o)}" update="@form" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+	<br/>
+<p:panel toggleable="true" styleClass="bottom-space">
+		<h3>
+			<h:outputText value ="Tabela zamowien - orderbook" style = "display: block; width:100%;text-align:center;"/>
+		</h3>
+</p:panel>
+	
+	<h:form id="orderbookTable" style="margin-bottom:1em;">
+<p:dataTable value="#{orderbookListBB.list}" var="o">
+
+			<p:column priority="5">
+				<f:facet name="header">
+					<h:outputText value="ID" />
+				</f:facet>
+				<h:outputText value="#{o.idOrderBook}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Cena" />
+				</f:facet>
+				<h:outputText value="#{o.price}" />
+			</p:column>
+
+			<p:column priority="4">
+				<f:facet name="header">
+					<h:outputText value="ID zamowienia" />
+				</f:facet>
+				<h:outputText value="#{o.Order_idOrder}"/>
+			</p:column>
+			<p:column priority="4">
+				<f:facet name="header">
+					<h:outputText value="ID ksiazki" />
+				</f:facet>
+				<h:outputText value="#{o.Book_idBook}"/>
+					
+
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Opcje" />
+				</f:facet>
+
+			
+
+				<p:commandButton value="Usun"
+					action="#{orderbookListBB.deleteOrderBook(o)}" update="@form" />
 			</p:column>
 		</p:dataTable>
 	</h:form>

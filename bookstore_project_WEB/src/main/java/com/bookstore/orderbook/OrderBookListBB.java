@@ -97,9 +97,11 @@ public class OrderBookListBB {
 		return PAGE_PERSON_EDIT;
 	}
 
-	public String deleteOrderBokk(Orderbook orderbook){
+	public String deleteOrderBook(Orderbook orderbook){
 	
 		orderbookDAO.remove(orderbook);
 		return PAGE_STAY_AT_THE_SAME;
 	}
+	
+	
 }

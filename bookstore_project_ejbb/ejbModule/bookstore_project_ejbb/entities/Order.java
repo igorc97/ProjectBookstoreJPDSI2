@@ -11,6 +11,8 @@ import java.util.List;
  * 
  */
 @Entity
+@Table(name = "myorder")
+
 @NamedQuery(name="Order.findAll", query="SELECT o FROM Order o")
 public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -33,8 +35,8 @@ public class Order implements Serializable {
 	@OneToMany(mappedBy="order")
 	private List<Orderbook> orderbooks;
 
-	public Order() {
-	}
+	//public Order() {
+	//}
 
 	public int getIdOrder() {
 		return this.idOrder;
