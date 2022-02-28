@@ -15,7 +15,7 @@ import bookstore_project_ejbb.entities.User;
 
 @Stateless
 public class OrderDAO {
-
+		private Query query;
 	@PersistenceContext
 	EntityManager em;
 	public void create(Order order) {
@@ -84,6 +84,50 @@ public class OrderDAO {
 
 		return list;
 	}
+	/*
+	 * public int getOrderID(int idUser) { int id = 0; String where = "";
+	 * 
+	 * where = createWhere("idUser", idUser, where); query =
+	 * em.createQuery("SELECT o.idUser FROM Order o " + where);
+	 * query.setParameter("idUser", idUser);
+	 * 
+	 * try { id = (int) query.getSingleResult(); } catch (Exception e) {
+	 * e.printStackTrace(); }
+	 * 
+	 * return id; }
+	 */
 	
+	private String createWhere(String paramName, String param, String currentWhere) {
+		String where = currentWhere;
 
+		if (param != null) {
+			if (where.isEmpty()) {
+				where = "WHERE ";
+			} else {
+				where += "AND ";
+			}
+			if (paramName.equals("idUser")) {
+				where += "u." + paramName + " like :" + paramName + " ";
+			} else if (paramName.equals("name")) {
+				where += "r." + paramName + " like:" + paramName + " ";
+			}
+		}
+
+		return where;
+	}
+
+	public Order findById(int idOrder){
+		Order o = null;
+		Query query = em.createQuery("Select o from Order o where o.idOrder = :idOrder");
+		query.setParameter("idOrder", idOrder);
+		try {
+			
+			o = (Order) query.getSingleResult();
+			
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		return o;
+	}
+	
 }

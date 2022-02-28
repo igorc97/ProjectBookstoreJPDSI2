@@ -100,13 +100,14 @@ public class OrderListBB {
 					
 	book = u;
 	order = new Order();
-	orderbook = new Orderbook();
+	
 		//long millis = System.currentTimeMillis();
 		//java.sql.Date date = new java.sql.Date(millis);
 	
 	Date today = java.sql.Date.valueOf(java.time.LocalDate.now());
 	Date receivedate = java.sql.Date.valueOf(java.time.LocalDate.now().plusWeeks(2));
 		order.setDateOfOrder(today);
+			System.out.println(receivedate);
 		order.setDateOfReceive(receivedate);
 		
 	//order.setDateOfOrder(date); //DATE OF ORDER
@@ -117,12 +118,13 @@ public class OrderListBB {
 	//order.setDateOfReceive(nowadata); //DATE OF RECEIVE
 		//order.setUser(remoteClient); //idUser
 		//int a = remoteClient.getIdUser();
-		String login2 = remoteClient.getLogin();
+		//String login2 = remoteClient.getLogin();
 		//User idusera = userDAO.findByIdUser(a);
 		
 		//User user = userDAO.find(userDAO.getUserID(login2));
 	//System.out.println(user.getName());
 		User user = userDAO.findBySurname(remoteClient.getSurname());
+			System.out.println(user);
 		order.setUser(user);
 	//
 		//order.setOrderbooks(orderbooks);
@@ -161,11 +163,20 @@ public class OrderListBB {
 		//order.setDateOfReceive(calendar.getTime());
 		//order.setOrderbooks(orderbooks);
 		
+		
+		
+		
+		
+		
+		 //.setOrder niby id ale chyba powinnen byc sam order
+		orderbook = new Orderbook();
 		//orderbook = b;
 		orderbook.setBook(book); //idBook
+		
+		
 		orderbook.setOrder(order); //idOrder
 		orderbook.setPrice(book.getPrice()); //price
-		order.setOrderbooks(orderbooks);
+		//order.setOrderbooks(orderbooks);
 		///orderbook.setIdOrderBook(0);             //??
 		//Order order = new Order();
 		//Orderbook orderbook = new Orderbook();
@@ -185,6 +196,8 @@ public class OrderListBB {
 			// always a new record
 			orderDAO.create(order);
 			orderbookDAO.create(orderbook);
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			context.addMessage(null,

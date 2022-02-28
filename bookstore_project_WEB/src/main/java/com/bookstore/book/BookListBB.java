@@ -22,6 +22,7 @@ import bookstore_project_ejbb.entities.Book;
 public class BookListBB {
 	private static final String PAGE_PERSON_EDIT = "table?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
+	private static final String PAGE_NEW_BOOK = "newBook?faces-redirect=true";
 	
 	private String title;
 	
@@ -70,7 +71,7 @@ public class BookListBB {
 		//2. Pass object through flash	
 		flash.put("book", book);
 		
-		return PAGE_PERSON_EDIT;
+		return PAGE_NEW_BOOK;
 	}
 
 	public String editBook(Book book){

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html;charset=UTF-8" encoding="UTF-8">
+<f:metadata>
+	<f:viewAction action="#{bookEditBB.onLoad()}" />
+</f:metadata>
+<ui:composition template="/templates/page-template.xhtml">
+	<ui:define name="pageContent">
+		<div class="card">
+    	<h:form rendered="#{bookEditBB.book != null}">
+		<p:panel header="Dodawanie nowych pozycji" style="width: 100%;">
+		<p:messages/>
+		<center>
+		
+		<h:panelGrid columns="2" columnClasses="labelColumn, fieldColumn" var="p">
+			<p:outputLabel value="Tytuł"/>
+			<p:inputText id="title" value="#{bookEditBB.book.title}" required="true" requiredMessage="Pole nie może być puste!" />			
+						
+			<p:outputLabel value="Autor"/>
+			<p:inputText id="author" value="#{bookEditBB.book.author}" required="true" requiredMessage="Pole nie może być puste!"/>
+			
+			<p:outputLabel value="ISBN"/>
+			<p:inputText id="isbn" value="#{bookEditBB.book.isbn}" required="true" requiredMessage="Pole nie może być puste!"/>
+			
+			<p:outputLabel value="Wydawnictwo"/>
+			<p:inputText id="publishingHouse" value="#{bookEditBB.book.publishingHouse}" required="true" requiredMessage="Pole nie może być puste!"/>
+						
+			<p:outputLabel value="Data wydania"/>
+			<p:inputText id="releaseDate" value="#{bookEditBB.book.releaseDate}" required="true" requiredMessage="Pole nie może być puste!">
+			<f:convertDateTime pattern="yyyy-mm-dd" />
+			</p:inputText>
+			
+			<p:outputLabel value="Cena"/>
+			<p:inputText id="price" value="#{bookEditBB.book.price}" required="true" requiredMessage="Pole nie może być puste!"/>
+			
+			
+			<p:outputLabel value="Dostępność"/>
+			<p:inputText id="availability" value="#{bookEditBB.book.availability}" required="true" requiredMessage="Pole nie może być puste!"/>
+			
+			<p:outputLabel value="Opis"/>
+			<p:inputText id="description" value="#{bookEditBB.book.description}" required="true" requiredMessage="Pole nie może być puste!"/>
+							
+			<p:outputLabel value=""/>
+			<p:commandButton action="#{bookEditBB.saveData()}" value="Dalej"/>
+		</h:panelGrid>
+		
+		</center>
+		</p:panel>
+		
+	</h:form>
+</div>
+</ui:define>
+</ui:composition>
+<ui:composition template="/templates/footer-snippet.xhtml">
+</ui:composition>
+</f:view>
+</html>

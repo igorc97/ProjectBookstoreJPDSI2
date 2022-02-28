@@ -24,8 +24,9 @@ public class BookEditBB implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String PAGE_PERSON_LIST = "table?faces-redirect=true";
+	
 	private static final String PAGE_STAY_AT_THE_SAME = null;
+	private static final String PAGE_SHOP = "/pages/shop/table?faces-redirect=true";
 
 	private Book book = new Book();
 	private Book loaded = null;
@@ -86,6 +87,6 @@ public class BookEditBB implements Serializable {
 			return PAGE_STAY_AT_THE_SAME;
 		}
 
-		return PAGE_PERSON_LIST;
+		return PAGE_SHOP;
 	}
 }
