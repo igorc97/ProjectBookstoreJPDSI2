@@ -9,6 +9,8 @@
 		<h1>
 			<ui:insert name="title">Księgarnia internetowa</ui:insert>
 		</h1>
+		<br/>
+			<p:clock pattern="HH:mm:ss dd.MM.yyyy" mode="server"/>
 		</center>
 		<h:outputText style="margin-left: 100em;"
 		value="Zalogowany: #{remoteClient.details.name} #{remoteClient.details.surname}" />

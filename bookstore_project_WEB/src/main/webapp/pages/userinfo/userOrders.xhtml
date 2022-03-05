@@ -10,23 +10,22 @@
 
 <h:form id="order-table">
 	<div class="card">
-		<p:dataTable var="o" value="#{orderListBB.list}">
+		<p:dataTable var="o" value="#{orderListBB.getUserOrders(remoteClient.details)}">
 		<p:column headerText="ID">
 			<h:outputText value="#{o.idOrder}"/>
 		</p:column>
 		
 		<p:column headerText="Data zamowienia">
-                <h:outputText value="#{o.dateOfOrder}" />
+                <h:outputText value="#{o.dateOfOrder}" >
+                <f:convertDateTime pattern="dd-MM-yyyy" />
+                </h:outputText>
             </p:column>
 
             <p:column headerText="Data przyslania">
-                <h:outputText value="#{o.dateOfReceive}" />
+                <h:outputText value="#{o.dateOfReceive}" >
+                <f:convertDateTime pattern="dd-MM-yyyy" />
+                </h:outputText>
             </p:column>
-
-            <p:column headerText="Cena">
-                <h:outputText value="#{o.price}" />
-            </p:column>
-            
         
             </p:dataTable>
 	</div>

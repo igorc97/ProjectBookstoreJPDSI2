@@ -79,6 +79,10 @@ public class OrderListBB {
 		return orderDAO.getFullList();
 	}
 	
+	public List<Order> getUserOrders(User remoteClient){
+		return orderDAO.getUserOrders(remoteClient);
+	}
+	
 	public List<Order> getList(){
 		List<Order> list = null;
 		
@@ -93,6 +97,32 @@ public class OrderListBB {
 		list = orderDAO.getList(searchParams);
 		
 		return list;
+	}
+	
+	public List<Order> getOrderWhere(User remoteClient){
+		//List<Order> list = null;
+		List <Order> list2 = null;
+		//1. Prepare search params
+		Map<String,Object> searchParams = new HashMap<String, Object>();
+		
+		if (idOrder != null && idOrder.length() > 0){
+			searchParams.put("idOrder", idOrder);
+		}
+		
+		//2. Get list
+		try {
+			
+			list2 = (List<Order>) orderDAO.findByIdUser(remoteClient.getIdUser());
+		
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			context.addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "wystąpił błąd podczas zapisu zamówienia", null));
+			
+			
+		}
+		return list2;
 	}
 
 	public String newOrder(Book u, User remoteClient){
