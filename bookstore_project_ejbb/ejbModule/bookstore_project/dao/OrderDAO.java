@@ -130,4 +130,74 @@ public class OrderDAO {
 		return o;
 	}
 	
+	public List<Order> getListWhereUserId(Map<String, Object> searchParams) {
+		List<Order> list = null;
+		//User remoteClient;
+		//int userId = remoteClient.getIdUser();
+		// 1. Build query string with parameters
+		String select = "select o ";
+		String from = "from Order o ";
+		String where = "User_idUser="; //+ userId ;
+		String orderby = "order by o.idOrder asc";
+
+		// search for surname
+		String idOrder = (String) searchParams.get("idOrder");
+		if (idOrder != null) {
+			if (where.isEmpty()) {
+				where = "where ";
+			} else {
+				where += "and ";
+			}
+			where += "u.idOrder like :idOrder ";
+		}
+		
+		// ... other parameters ... 
+
+		// 2. Create query object
+		Query query = em.createQuery(select + from + where + orderby);
+
+		// 3. Set configured parameters
+		if (idOrder != null) {
+			query.setParameter("idOrder", idOrder+"%");
+		}
+
+		// ... other parameters ... 
+
+		// 4. Execute query and retrieve list of Person objects
+		try {
+			list = query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+	
+	public Order findByIdUser(int idUser){
+		Order o = null;
+		Query query = em.createQuery("Select o from myorder o where o.User_idUser = :User_idUser");
+		query.setParameter("User_idUser", idUser);
+		try {
+			
+			o = (Order) query.getSingleResult();
+			
+			}catch (Exception e) {
+				e.printStackTrace();		
+			}
+		return o;
+	}
+	
+	public List<Order> getUserOrders(User remoteClient){
+		List<Order> listUserOrders = null;
+		int idUserek = remoteClient.getIdUser(); 
+		query = em.createQuery("Select o from Order o where o.user = :user");
+		query.setParameter("user", remoteClient);
+		try {
+			
+			listUserOrders = query.getResultList();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return listUserOrders;
+	}
 }

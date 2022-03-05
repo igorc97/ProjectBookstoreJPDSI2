@@ -9,7 +9,7 @@
 <ui:composition template="/templates/page-template.xhtml">
 	<ui:define name="pageContent">
 		<center>
-        <p:clock displayMode="analog"/>
+     
         </center>
 	 <!-- Obrazek powitalny -->
 	 <p:panel header="." toggleable="true" togglespeed="500">
@@ -96,6 +96,20 @@
 			<br/>
      		<br/>
 	
+					<p:panel header="Nasza galeria" toggleable="true" togglespeed="500">
+						
+    <p:contentFlow >
+        <p:graphicImage name="img/store1.jpg" library="template" styleClass="content"/>
+        <p:graphicImage name="img/store2.jpg" library="template" styleClass="content"/>
+        <p:graphicImage name="img/store3.jpg" library="template" styleClass="content"/>
+        <p:graphicImage name="img/store4.jpg" library="template" styleClass="content"/>
+        <p:graphicImage name="img/store5.jpg" library="template" styleClass="content"/>
+    </p:contentFlow>
+					</p:panel>
+	
+			<br/>
+			<br/>
+			
 	</ui:define>
 </ui:composition>
 	<ui:composition template="/templates/footer-snippet.xhtml">
