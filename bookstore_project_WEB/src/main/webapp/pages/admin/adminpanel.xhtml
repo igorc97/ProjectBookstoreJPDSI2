@@ -147,57 +147,7 @@
 		</p:dataTable>
 	</h:form>
 	<br/>
-<p:panel toggleable="true" styleClass="bottom-space">
-		<h3>
-			<h:outputText value ="Tabela zamowien - orderbook" style = "display: block; width:100%;text-align:center;"/>
-		</h3>
-</p:panel>
-	
-	<h:form id="orderbookTable" style="margin-bottom:1em;">
-<p:dataTable value="#{orderbookListBB.list}" var="o">
 
-			<p:column priority="5">
-				<f:facet name="header">
-					<h:outputText value="ID" />
-				</f:facet>
-				<h:outputText value="#{o.idOrderBook}" />
-			</p:column>
-
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="Cena" />
-				</f:facet>
-				<h:outputText value="#{o.price}" />
-			</p:column>
-
-			<p:column priority="4">
-				<f:facet name="header">
-					<h:outputText value="ID zamowienia" />
-				</f:facet>
-				<h:outputText value="#{o.Order_idOrder}"/>
-			</p:column>
-			<p:column priority="4">
-				<f:facet name="header">
-					<h:outputText value="ID ksiazki" />
-				</f:facet>
-				<h:outputText value="#{o.Book_idBook}"/>
-					
-
-			</p:column>
-
-			<p:column>
-				<f:facet name="header">
-					<h:outputText value="Opcje" />
-				</f:facet>
-
-			
-
-				<p:commandButton value="Usun"
-					action="#{orderbookListBB.deleteOrderBook(o)}" update="@form" />
-			</p:column>
-		</p:dataTable>
-	</h:form>
-	
 	
 </ui:define>
 </ui:composition>
